@@ -1,0 +1,5 @@
+C:\Users\saucer\Desktop\Fab20170904\Model\bin\Release\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\Model\bin\Release\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\Model\obj\Release\Model.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\Model\obj\Release\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\Model\obj\Release\ZGZY.Model.pdb

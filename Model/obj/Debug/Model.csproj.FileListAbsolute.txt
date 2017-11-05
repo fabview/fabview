@@ -1,0 +1,39 @@
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\Model\bin\Debug\ZGZY.Model.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\Model\bin\Debug\ZGZY.Model.pdb
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\Model\obj\Debug\ResolveAssemblyReference.cache
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\Model\obj\Debug\ZGZY.Model.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\Model\obj\Debug\ZGZY.Model.pdb
+E:\代码\ZGZY\Model\bin\Debug\ZGZY.Model.dll
+E:\代码\ZGZY\Model\bin\Debug\ZGZY.Model.pdb
+E:\代码\ZGZY\Model\obj\Debug\ResolveAssemblyReference.cache
+E:\代码\ZGZY\Model\obj\Debug\ZGZY.Model.dll
+E:\代码\ZGZY\Model\obj\Debug\ZGZY.Model.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\Model\bin\Debug\ZGZY.Model.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\Model\bin\Debug\ZGZY.Model.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\Model\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\Model\obj\Debug\ZGZY.Model.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\Model\obj\Debug\ZGZY.Model.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\bin\Debug\ZGZY.Model.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\bin\Debug\ZGZY.Model.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\obj\Debug\ResolveAssemblyReference.cache
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\obj\Debug\ZGZY.Model.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\obj\Debug\ZGZY.Model.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\bin\Debug\ZGZY.Model.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\bin\Debug\ZGZY.Model.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\obj\Debug\ResolveAssemblyReference.cache
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\obj\Debug\ZGZY.Model.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\Model\obj\Debug\ZGZY.Model.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\Model\bin\Debug\ZGZY.Model.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\Model\bin\Debug\ZGZY.Model.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\Model\obj\Debug\ZGZY.Model.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\Model\obj\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\Model\bin\Debug\ZGZY.Model.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\Model\bin\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\Model\obj\Debug\ZGZY.Model.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\Model\obj\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\Model\bin\Debug\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\Model\bin\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\Model\obj\Debug\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\Model\obj\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
