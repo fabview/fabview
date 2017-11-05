@@ -1,0 +1,8 @@
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Release\FabViewModel.dll
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Release\FabViewModel.pdb
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Release\System.Net.Http.dll
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Release\System.Net.Http.xml
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Release\zh-Hans\System.Net.Http.resources.dll
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\obj\Release\FabViewModel.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\obj\Release\FabViewModel.dll
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\obj\Release\FabViewModel.pdb

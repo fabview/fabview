@@ -1,0 +1,16 @@
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\FabViewModel\bin\Debug\FabViewModel.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\FabViewModel\bin\Debug\FabViewModel.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\FabViewModel\bin\Debug\System.Net.Http.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\FabViewModel\bin\Debug\System.Net.Http.xml
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\FabViewModel\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\FabViewModel\obj\Debug\FabViewModel.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\FabViewModel\obj\Debug\FabViewModel.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\FabViewModel\obj\Debug\FabViewModel.pdb
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Debug\FabViewModel.dll
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Debug\FabViewModel.pdb
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Debug\System.Net.Http.dll
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Debug\System.Net.Http.xml
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\bin\Debug\zh-Hans\System.Net.Http.resources.dll
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\obj\Debug\FabViewModel.dll
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\obj\Debug\FabViewModel.pdb
+C:\Users\saucer\Desktop\Fab20170904\FabViewModel\obj\Debug\FabViewModel.csprojResolveAssemblyReference.cache
