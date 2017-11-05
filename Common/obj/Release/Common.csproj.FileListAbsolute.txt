@@ -1,0 +1,8 @@
+C:\Users\saucer\Desktop\Fab20170904\Common\bin\Release\ZGZY.Common.dll
+C:\Users\saucer\Desktop\Fab20170904\Common\bin\Release\ZGZY.Common.pdb
+C:\Users\saucer\Desktop\Fab20170904\Common\bin\Release\Newtonsoft.Json.dll
+C:\Users\saucer\Desktop\Fab20170904\Common\bin\Release\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\Common\bin\Release\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\Common\obj\Release\Common.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\Common\obj\Release\ZGZY.Common.dll
+C:\Users\saucer\Desktop\Fab20170904\Common\obj\Release\ZGZY.Common.pdb
