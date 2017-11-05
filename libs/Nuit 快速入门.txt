@@ -1,0 +1,29 @@
+
+安装完Nunit.msi后，可以到把工具挂到vs里，方便使用
+工具 - 外部工具 - 添加 - 找到目录即可
+
+
+
+最终的测试类写在类库项目的普通类里
+注意：测试的类上需要加标签：[NUnit.Framework.TestFixture] 
+类里的测试方法需要加标签：[NUnit.Framework.Test]
+
+写完测试类后，打开Nunit工具，File - New Project位置定位到测试类库项目的目录里面，名字和类库项目名称一样，确定后必须在Nunit工具上点击File - Save，这样才能生成***.nunit的测试文件【Nunit里跑的是测试文件不是dll】
+
+之后再File - Open Project 是打开*.nunit文件，不是打开dll文件
+Project - Add assembly才是添加测试类的dll文件，必须在打开的*.nunit文件里添加dll文件，然后保存，方便下次直接打开
+
+
+
+然后到Nunit工具里加载生成好的程序集
+Project - Add Assembly 找到测试类库项目生成的同名dll
+加载后再保存，否则下次进来找不到；以后加载程序集或者reload程序集的时候必须经常保存
+
+
+
+本来数据库连接字符串是写在控制台项目的app.config或者网站项目web.config里的，但是现在是写在测试项目下的。
+拷贝*.config到测试类库项目下（必须包括到项目里）
+然后把App修改成和测试文件名称一致，作为测试文件的配置文件，这样就能找到数据库了。
+
+
+
