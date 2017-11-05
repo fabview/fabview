@@ -1,0 +1,15 @@
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.BLL.dll
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.BLL.pdb
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.Common.dll
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.DALFactory.dll
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\Newtonsoft.Json.dll
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\log4net.dll
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.Common.pdb
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.DALFactory.pdb
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\BLL\bin\Release\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\BLL\obj\Release\ZGZY.BLL.dll
+C:\Users\saucer\Desktop\Fab20170904\BLL\obj\Release\ZGZY.BLL.pdb
