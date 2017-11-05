@@ -1,0 +1,81 @@
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.pdb
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\bin\Debug\log4net.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\bin\Debug\ZGZY.Model.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.pdb
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\bin\Debug\log4net.xml
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\bin\Debug\ZGZY.Model.pdb
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\obj\Debug\ResolveAssemblyReference.cache
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.pdb
+E:\代码\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.dll
+E:\代码\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.pdb
+E:\代码\ZGZY\DALFactory\bin\Debug\log4net.dll
+E:\代码\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.dll
+E:\代码\ZGZY\DALFactory\bin\Debug\ZGZY.Model.dll
+E:\代码\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.pdb
+E:\代码\ZGZY\DALFactory\bin\Debug\ZGZY.Model.pdb
+E:\代码\ZGZY\DALFactory\obj\Debug\ResolveAssemblyReference.cache
+E:\代码\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.dll
+E:\代码\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\bin\Debug\log4net.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\bin\Debug\ZGZY.Model.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\bin\Debug\ZGZY.Model.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\log4net.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.Model.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.Model.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\obj\Debug\ResolveAssemblyReference.cache
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\log4net.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.Model.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\bin\Debug\ZGZY.Model.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\obj\Debug\ResolveAssemblyReference.cache
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\bin\Debug\ZGZY.DALFactory.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\bin\Debug\log4net.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\bin\Debug\ZGZY.Model.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\bin\Debug\ZGZY.IDAL.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\bin\Debug\ZGZY.Model.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\obj\Debug\DALFactory.csprojResolveAssemblyReference.cache
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\DALFactory\obj\Debug\ZGZY.DALFactory.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\bin\Debug\ZGZY.DALFactory.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\bin\Debug\ZGZY.DALFactory.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\bin\Debug\log4net.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\bin\Debug\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\bin\Debug\ZGZY.Model.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\bin\Debug\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\bin\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\obj\Debug\DALFactory.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\obj\Debug\ZGZY.DALFactory.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\DALFactory\obj\Debug\ZGZY.DALFactory.pdb
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\bin\Debug\ZGZY.DALFactory.dll
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\bin\Debug\ZGZY.DALFactory.pdb
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\bin\Debug\log4net.dll
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\bin\Debug\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\bin\Debug\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\bin\Debug\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\bin\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\obj\Debug\DALFactory.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\obj\Debug\ZGZY.DALFactory.dll
+C:\Users\saucer\Desktop\Fab20170904\DALFactory\obj\Debug\ZGZY.DALFactory.pdb
