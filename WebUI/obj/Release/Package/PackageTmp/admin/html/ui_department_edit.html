@@ -1,0 +1,25 @@
+﻿<div style="padding: 15px; overflow: hidden">
+    <form id="ui_department_editform" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                名称：
+            </th>
+            <td>
+                <input type="hidden" name="id" id="id" />
+                <input type="text" name="ui_department_departmentname_edit" id="ui_department_departmentname_edit"
+                    class="easyui-validatebox" data-options="required:true" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                排序：
+            </th>
+            <td>
+                <input id="ui_department_sort_edit" name="ui_department_sort_edit" class="easyui-numberspinner"
+                    style="width: 70px;" data-options="min:1,max:100,editable:false">
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

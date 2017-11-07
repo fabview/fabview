@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="/css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+    <div class="easyui-layout" data-options="fit:true">
+        <div data-options="region:'north', height:50" style="vertical-align:central">
+            <table>
+                <tr>
+                    <td>工序名称：</td>
+                    <td><input id="txtCurOperator" style="width:100px" /></td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="easyui-linkbutton" onclick="queryRoute()" id="btn-save">查询</a></td>
+                    <td><a href="#" class="easyui-linkbutton" onclick="addRoute()" id="btn-save">新增工艺路线</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div data-options="region:'west', split:true, minWidth:200, width:550, title:'工艺路线列表'">
+            <div id="main-nav" class="easyui-accordion" data-options="fit:true, border:false, selected:true">
+                <table id="tPartsList"></table>
+            </div>
+        </div>
+        <div data-options="region:'center'">
+            <div id="main-tab" class="easyui-tabs" data-options="fit:true, border:false">
+                <div title="检查项目" style="padding: 5px;">
+                    <!--<iframe id="frameCheckList" width="100%"  height="100%" scrolling="no" frameborder="0" src="WorkingInstruction.html" marginheight="0" marginwidth="0" onload="changeFrameHeight()"></iframe>-->
+                    <table style="width:100%; height:350px">
+                        <tr>
+                            <td valign="top">
+                                <table class="gridtable" id="tCheckList" style="width: 100%; display:none">
+                                    <tbody>
+                                        <tr>
+                                            <th style="width: 30px;">序号</th>
+                                            <th style="width: 100px;">检查项目</th>
+                                            <th style="width: 100px;">检查结果</th>
+                                            <th style="width: 100px;">备注</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div title="操作指导书" style="padding: 5px;">
+                    <iframe id="frameWI" style="width:100%; height:100%" scrolling="no" frameborder="0" src="@Url.Action('Welcome')" marginheight="0" marginwidth="0" onload="changeFrameHeight()"></iframe>
+                </div>
+                <div title="生产备注" style="padding: 5px;">
+                    <textarea rows="3" style="resize:none;width:99%;height:99%;font-size:12px;margin:1px; font-family: Microsoft YaHei;"
+                              id="production_note" placeholder="如有需要，请给后工序添加生产备注。"></textarea>
+                </div>
+            </div>
+        </div>
+        <div data-options="region:'south', height:50">
+            <p style="text-align:center; line-height:20px;"></p>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    function addRoute() {
+        $("<div/>").dialog({
+            id: "ui_add_route",
+            href: "Routing_add.html",
+            title: "角色授权：" ,//+ row[0].RoleName,
+            height: 500,
+            width: 300,
+            modal: true,
+            buttons: [{
+                id: "btn_add",
+                text: '保 存',
+                handler: function () {
+                    $('#btn_add').linkbutton('disable');
+                    //doAuthorize(row[0].Id);  //保存授权信息
+                    doAdd();
+                }
+            }],
+            onLoad: function () {
+                $('#tree_route').tree({
+                    url: "/ashx/RouteHandler.ashx?action=select_all",
+                    onlyLeafCheck: true,
+                    checkbox: true
+                });
+            },
+            onClose: function () {
+                $("#ui_add_route").dialog('destroy');  //销毁dialog对象
+            }
+        });
+    }
+</script>

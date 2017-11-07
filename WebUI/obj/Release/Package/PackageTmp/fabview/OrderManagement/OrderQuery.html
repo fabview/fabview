@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>订单查询</title>
+    <link href="/css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/color.css" rel="stylesheet" />
+
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/easyui-lang-zh_CN.js"></script>
+    <script src="/admin/js/common.js"></script>
+</head>
+<body>
+    <div class="easyui-layout" data-options="fit:true,border:false">
+        <div data-options="region:'west',split:true,border:true,collapsed:false,title:'查询条件'"
+             style="width: 270px;">
+            <table id="table_search" cellspacing="8">
+                <tr style="text-align:right">
+                    <td style="width:250px;">订单号：<input id="order_number" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">子订单号：<input id="sub_order" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">当前工序：<input id="cur_process" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">下工序：<input id="next_process" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">订单状态：<input id="status" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">下单日期起：<input class="easyui-datebox" id="order_date_begin" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">下单日期止：<input class="easyui-datebox" id="order_date_end" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">医院：<input id="distributor" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">医生：<input id="dt_contact" /></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">患者：<input id="end_customer" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-search" plain="true"
+                           onclick="orderquery_searchdata();">搜索</a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-clear" plain="true"
+                           onclick="orderquery_reset();">重置</a>
+                        <!--<a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-export" plain="true"
+                           onclick="orderquery_export();">导出Excel</a>-->
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div data-options="region:'center', title:'订单列表'">
+            <table id="grid_order" class="easyui-datagrid" fit="true"
+                   rownumbers="true" pagination="true">
+                <thead>
+                    <tr>
+                        <th field="ORDER_NUMBER" width="150">订单</th>
+                        <th field="ORDER_TYPE" width="100" align="center">订单类型</th>
+                        <th field="SUB_ORDER" width="150">子订单</th>
+                        <th field="STATUS" width="100" align="center">订单状态</th>
+                        <th field="SUB_ORDER_DESC" width="100">子订单描述</th>
+                        <th field="PROCESS_DAYS" width="80">加工天数</th>
+                        <th field="ESTIMATE_PACK_DATE" width="150">预计交单日期</th>
+                        <th field="ORDER_DATE" width="100" align="center">下单日期</th>
+                        <th field="DISTRIBUTOR" width="100" align="center">医院</th>
+                        <th field="DT_CONTACT" width="100" align="center">医生</th>
+                        <th field="END_CUSTOMER" width="100" align="center">病人</th>
+                        <th field="END_CUST_SEX" width="100" align="center">性别</th>
+                        <th field="END_CUST_AGE" width="100" align="center">年龄</th>
+                        <th field="PROCESS_DAYS" width="100" align="center">加工周期</th>
+                        <th field="NOTE" width="100" align="center">订单备注</th>
+                        <th field="PROD_CATE" width="100" align="center">产品类型</th>
+                        <th field="PROD_NAME" width="100" align="center">产品名称</th>
+                        <th field="PROCESS_TYPE" width="100" align="center">工艺类型</th>
+                        <th field="PROD_COLOR" width="100" align="center">牙色</th>
+                        <th field="PROD_POSITION" width="100" align="center">牙位</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var grid_order;
+    var grid_order_pagesize = 30;
+
+    function orderquery_searchdata() {
+        grid_order = $('#grid_order').datagrid({
+            pageSize: grid_order_pagesize,
+            pageList: [30, 50, 100, 500],
+            fit: true,//自动大小
+            loadMsg: '数据加载中...',
+            rownumbers: true,//行号
+            url: '/ashx/OrderHandler.ashx?action=query',
+            queryParams: {
+                'rows': grid_order_pagesize,
+                'order_number': $('#order_number').val(),
+                'order_date_begin': $('#order_date_begin').datebox('getValue'),
+                'order_date_end': $('#order_date_end').datebox('getValue'),
+                'sub_order': $('#sub_order').val(),
+                'cur_process': $('#cur_process').val(),
+                'next_process': $('#next_process').val(),
+                'status': $('#status').val(),
+                'distributor': $('#distributor').val(),
+                'dt_contact': $('#dt_contact').val(),
+                'end_customer': $('#end_customer').val()
+            }
+        });
+
+        //设置分页控件
+        var p = grid_order.datagrid('getPager');
+        $(p).pagination({
+            pageSize: 15,//每页显示的记录条数，默认为10
+            pageList: [15, 30, 150]//可以设置每页记录条数的列表
+        });
+    }
+
+    function orderquery_reset() {
+        $("#table_search").find("tr").each(function () {
+            var arrtd = $(this).children();
+            arrtd.find("input").val('');
+        });
+    }
+    
+</script>

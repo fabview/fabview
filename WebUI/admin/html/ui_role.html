@@ -1,0 +1,332 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $.ajax({     //请求当前用户可以操作的按钮
+            url: "ashx/bg_button.ashx?menucode=role&pagename=ui_role",
+            type: "post",
+            data: { "action": "getbutton" },
+            dataType: "json",
+            timeout: 5000,
+            success: function (data) {
+                if (data.success) {
+                    var oldSelectRoleId;   //上次点选的RoleId
+                    var toolbar = getToolBar(data);      //common.js
+                    if (data.browser) {     //判断是否有浏览权限
+                        $("#ui_role_dg").datagrid({       //初始化datagrid
+                            url: "ashx/bg_role.ashx?action=search",
+                            striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                            idField: 'Id',
+                            sortName: 'AddDate',
+                            sortOrder: 'asc',
+                            pageList: [20, 40, 60, 80, 100],
+                            frozenColumns: [[
+                                             {
+                                                 width: '100',
+                                                 title: '角色名称',
+                                                 field: 'RoleName',
+                                                 sortable: true,
+                                                 formatter: function (value, row, index) {
+                                                     return value.length > 8 ? '<span title="' + value + '">' + value + '</span>' : value;
+                                                 }
+                                             }]],
+                            columns: [[
+                                       { field: 'AddDate', title: '添加时间', sortable: true, width: 130 },
+                                       { field: 'ModifyDate', title: '修改时间', sortable: true, width: 130 },
+                                       { field: 'Description', title: '角色描述', sortable: true, width: 300,
+                                           formatter: function (value, row, index) {
+                                               return value.length > 20 ? '<span title="' + value + '">' + value + '</span>' : value;
+                                           }
+                                       }]],
+                            toolbar: toolbar.length == 0 ? null : toolbar,   //请求回来的当前用户可以操作的按钮
+                            onSelect: function (rowIndex, rowData) {
+                                if (oldSelectRoleId == rowData.Id) {  //点选的是相同的角色就不再请求数据
+                                    return;
+                                }
+                                oldSelectRoleId = rowData.Id;   //赋值
+
+                                var $ui_role_layout = $("#ui_role_layout");
+                                var eastRoleUser = $ui_role_layout.layout("panel", "east");
+
+                                if (eastRoleUser.panel("options").collapsed) {   //判断是否展开
+                                    $ui_role_layout.layout("expand", "east");
+                                }
+                                eastRoleUser.panel("setTitle", rowData.RoleName + "成员");
+                                if ($("#ui_role_user_dg").data("datagrid")) {
+                                    $("#ui_role_user_dg").datagrid({       //请求数据
+                                        url: "ashx/bg_role.ashx?action=searchRoleUser&roleId=" + rowData.Id
+                                    });
+                                }
+                                else {
+                                    $("#ui_role_user_dg").datagrid({       //初始化datagrid
+                                        url: "ashx/bg_role.ashx?action=searchRoleUser&roleId=" + rowData.Id,
+                                        striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                                        idField: 'Id',
+                                        sortName: 'AddDate',
+                                        sortOrder: 'asc',
+                                        pageList: [20, 40, 60, 80, 100],
+                                        columns: [[
+                                              { field: 'UserId', title: '登录名', sortable: true, width: 100 },
+                                              { field: 'UserName', title: '姓名', sortable: true, width: 80 },
+                                              { field: 'IsAble', title: '启用', sortable: true, width: 60, align: 'center',
+                                                  formatter: function (value, row, index) {
+                                                      return value ? '<img src="themes/icon/chk_checked.gif" alt="已启用" title="用户已启用" />' : '<img src="themes/icon/chk_unchecked.gif" alt="未启用" title="用户未启用" />';
+                                                  }
+                                              },
+                                              { field: 'IfChangePwd', title: '改密', sortable: true, width: 60, align: 'center',
+                                                  formatter: function (value, row, index) {
+                                                      return value ? '<img src="themes/icon/chk_checked.gif" alt="已改密" title="用户已改密" />' : '<img src="themes/icon/chk_unchecked.gif" alt="未改密" title="用户未改密" />';
+                                                  }
+                                              },
+                                              { field: 'AddDate', title: '添加时间', sortable: true, width: 130}]]
+                                    });
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        $("#ui_role_layout").layout("remove", "east");    //如果没有浏览权限就移除展示区域
+                        $.show_warning("提示", "无权限，请联系管理员！");
+                    }
+                } else {
+                    $.show_warning("错误", data.result);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == "timeout") {
+                    $.show_warning("提示", "请求超时，请刷新当前页重试！");
+                }
+                else {
+                    $.show_warning("错误", textStatus + "：" + errorThrown);
+                }
+            }
+        })
+    });
+
+    //添加角色
+    function ui_role_add() {
+        $("<div/>").dialog({
+            id: "ui_role_add_dialog",
+            href: "html/ui_role_add.html",
+            title: "添加角色",
+            height: 250,
+            width: 400,
+            modal: true,
+            buttons: [{
+                id: "ui_role_add_btn",
+                text: '添 加',
+                handler: function () {
+                    $("#ui_role_roleaddform").form("submit", {
+                        url: "ashx/bg_role.ashx",
+                        onSubmit: function (param) {
+                            $('#ui_role_add_btn').linkbutton('disable');    //点击就禁用按钮，防止连击
+                            param.action = 'add';
+                            if ($(this).form('validate'))
+                                return true;
+                            else {
+                                $('#ui_role_add_btn').linkbutton('enable');   //恢复按钮
+                                return false;
+                            }
+                        },
+                        success: function (data) {
+                            var dataJson = eval('(' + data + ')');    //转成json格式
+                            if (dataJson.success) {
+                                $("#ui_role_add_dialog").dialog('destroy');  //销毁dialog对象
+                                $.show_warning("提示", dataJson.msg);
+                                $("#ui_role_dg").datagrid("reload");
+                            } else {
+                                $('#ui_role_add_btn').linkbutton('enable');   //恢复按钮
+                                $.show_warning("提示", dataJson.msg);
+                            }
+                        }
+                    });
+                }
+            }],
+            onLoad: function () {
+                $("#ui_role_rolename_add").focus();
+            },
+            onClose: function () {
+                $("#ui_role_add_dialog").dialog('destroy');  //销毁dialog对象
+            }
+        });
+    }
+    //修改角色
+    function ui_role_edit() {
+        var row = $("#ui_role_dg").datagrid("getChecked");
+        if (row.length < 1) {
+            $.show_warning("提示", "请先选择要修改的角色");
+            return;
+        }
+        if (row.length > 1) {
+            $.show_warning("提示", "不支持批量修改角色");
+            $("#ui_role_dg").datagrid('clearSelections').datagrid('clearChecked');
+            return;
+        }
+        $("<div/>").dialog({
+            id: "ui_role_edit_dialog",
+            href: "html/ui_role_edit.html",
+            title: "修改角色",
+            height: 250,
+            width: 400,
+            modal: true,
+            buttons: [{
+                id: "ui_role_edit_btn",
+                text: '修 改',
+                handler: function () {
+                    $("#ui_role_roleeditform").form("submit", {
+                        url: "ashx/bg_role.ashx",
+                        onSubmit: function (param) {
+                            $('#ui_role_edit_btn').linkbutton('disable');   //点击就禁用按钮，防止连击
+                            param.action = 'edit';
+                            if ($(this).form('validate'))
+                                return true;
+                            else {
+                                $('#ui_role_edit_btn').linkbutton('enable');   //恢复按钮
+                                return false;
+                            }
+                        },
+                        success: function (data) {
+                            var dataJson = eval('(' + data + ')');    //转成json格式
+                            if (dataJson.success) {
+                                $("#ui_role_edit_dialog").dialog('destroy');  //销毁dialog对象
+                                $.show_warning("提示", dataJson.msg);
+                                $("#ui_role_dg").datagrid("reload");
+                            } else {
+                                $('#ui_role_edit_btn').linkbutton('enable');    //恢复按钮
+                                $.show_warning("提示", dataJson.msg);
+                            }
+                        }
+                    });
+                }
+            }],
+            onLoad: function () {
+                $("#id").val(row[0].Id);
+                $("#originalName").val(row[0].RoleName);
+                $("#ui_role_rolename_edit").val(row[0].RoleName);
+                $("#ui_role_description_edit").val(row[0].Description);
+            },
+            onClose: function () {
+                $("#ui_role_edit_dialog").dialog('destroy');  //销毁dialog对象
+            }
+        });
+    }
+    //删除角色
+    function ui_role_delete() {
+        var rows = $("#ui_role_dg").datagrid("getChecked");
+        if (rows.length < 1) {
+            $.show_warning("提示", "请先勾选要删除的角色");
+            return;
+        }
+        if (rows.length > 1) {
+            $.show_warning("提示", "不支持批量删除");
+            $("#ui_role_dg").datagrid('clearSelections').datagrid('clearChecked');
+            return;
+        }
+        $.messager.confirm('提示', '确定删除：' + rows[0].RoleName + '？', function (r) {
+            if (r) {
+                para = {};
+                para.action = "delete";
+                para.timespan = new Date().getTime();
+                para.id = rows[0].Id;
+                $.ajax({
+                    url: "ashx/bg_role.ashx",
+                    data: para,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success) {
+                            $.show_warning("提示", data.msg);
+                            $("#ui_role_dg").datagrid("reload").datagrid('clearSelections').datagrid('clearChecked'); ;
+                            //如果“用户管理”标签页处于打开状态需要刷新，否则被删除的角色还显示，再点编辑用户就出错
+                            if ($('#tabs').tabs('exists', '用户管理')) {
+                                $('#tabs').tabs('getTab', '用户管理').panel('refresh');
+                            }
+                            $("#ui_role_layout").layout("collapse", "east");
+                            $("#ui_role_user_dg").datagrid('loadData', { total: 0, rows: [] });   //清空
+                        } else {
+                            $.show_warning("提示", data.msg);
+                        }
+                    }
+                });
+            }
+        });
+    }
+    //角色授权
+    function ui_role_authorize() {
+        var row = $("#ui_role_dg").datagrid("getChecked");
+        if (row.length < 1) {
+            $.show_warning("提示", "请先勾选要授权的角色");
+            return;
+        }
+        if (row.length > 1) {
+            $.show_warning("提示", "不支持批量角色授权");
+            $("#ui_role_dg").datagrid('clearSelections').datagrid('clearChecked');
+            return;
+        }
+        //初始化dialog
+        $("<div/>").dialog({
+            id: "ui_role_authorize_dialog",
+            href: "html/ui_role_authorize.html",
+            title: "角色授权：" + row[0].RoleName,
+            height: 500,
+            width: 300,
+            modal: true,
+            buttons: [{
+                id: "ui_role_authorize_btn",
+                text: '授 权',
+                handler: function () {
+                    $('#ui_role_authorize_btn').linkbutton('disable');
+                    doAuthorize(row[0].Id);  //保存授权信息
+                }
+            }],
+            onLoad: function () {
+                $('#tree_menu_button').tree({
+                    url: "ashx/bg_menu.ashx?action=getAllMenu&roleid=" + row[0].Id + "&timespan=" + new Date().getTime(),
+                    onlyLeafCheck: true,
+                    checkbox: true
+                });
+            },
+            onClose: function () {
+                $("#ui_role_authorize_dialog").dialog('destroy');  //销毁dialog对象
+            }
+        });
+    }
+    function doAuthorize(roleId) {   //保存授权信息
+        var menuButtonId = "";
+        var nodes = $('#tree_menu_button').tree('getChecked');
+        for (var i = 0; i < nodes.length; i++) {
+            menuButtonId += nodes[i].attributes.menuid + " " + nodes[i].attributes.buttonid + ",";
+            //最终拼接示例：5 1,5 2,7 1,10 1,11 1 分别是菜单id、按钮id
+        }
+        var para = {};
+        para.action = "authorize";
+        para.timespan = new Date().getTime();
+        para.menuButtonId = menuButtonId;
+        para.roleId = roleId;
+
+        $.ajax({
+            url: "ashx/bg_role.ashx",
+            data: para,
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                if (data.success) {
+                    $("#ui_role_authorize_dialog").dialog('destroy');  //销毁dialog对象
+                    $.show_warning("提示", data.msg);
+                } else {
+                    $('#ui_role_authorize_btn').linkbutton('enable');
+                    $.show_warning("提示", data.msg);
+                }
+            }
+        });
+    }
+</script>
+<div id="ui_role_layout" class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'east',split:true,border:true,collapsed:true" title="角色成员"
+        style="width: 480px;">
+        <table id="ui_role_user_dg" data-options="fit:true,border:false">
+        </table>
+    </div>
+    <div data-options="region:'center',border:false">
+        <table id="ui_role_dg" data-options="fit:true,border:false">
+        </table>
+    </div>
+</div>

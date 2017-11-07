@@ -1,0 +1,182 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $.ajax({     //请求当前用户可以操作的按钮
+            url: "ashx/bg_button.ashx?menucode=operatelog&pagename=ui_operatelog",
+            type: "post",
+            data: { "action": "getbutton" },
+            dataType: "json",
+            timeout: 5000,
+            success: function (data) {
+                if (data.success) {
+                    var toolbar = getToolBar(data);      //common.js
+                    if (data.browser) {     //判断是否有浏览权限
+                        $("#ui_operatelog_dg").datagrid({       //初始化datagrid
+                            url: "ashx/bg_operatelog.ashx?action=search",
+                            striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                            idField: 'Id',
+                            sortName: 'OperateDate',
+                            sortOrder: 'desc',
+                            pageList: [20, 40, 60, 80, 100],
+                            frozenColumns: [[
+                                             {
+                                                 width: 100,
+                                                 title: '操作人',
+                                                 field: 'UserName',
+                                                 sortable: true,
+                                                 formatter: function (value, row, index) {
+                                                     return value.length > 10 ? '<span title="' + value + '">' + value + '</span>' : value;
+                                                 }
+                                             },
+                                             { field: 'UserIp', title: '操作IP', sortable: true, width: 100 }
+                                             ]],
+                            columns: [[
+                                       { field: 'OperateInfo', title: '操作', sortable: true, width: 130 },
+                                       { field: 'Description', title: '操作明细', sortable: true, width: 400,
+                                           formatter: function (value, row, index) {
+                                               return value.length > 50 ? '<span title="' + value + '">' + value + '</span>' : value;
+                                           }
+                                       },
+                                       { field: 'IfSuccess', title: '操作成功', sortable: true, width: 80, align: 'center',
+                                           formatter: function (value, row, index) {
+                                               return value ? '<img src="themes/icon/chk_checked.gif" alt="操作成功" title="操作成功" />' : '<img src="themes/icon/delete.gif" alt="操作失败" title="操作失败" />';
+                                           }
+                                       },
+                                       { field: 'OperateDate', title: '操作时间', sortable: true, width: 130 }
+                                       ]],
+                            toolbar: toolbar.length == 0 ? null : toolbar    //请求回来的当前用户可以操作的按钮
+                        });
+                    }
+                    else {
+                        $("#ui_operatelog_layout").layout("remove", "east");    //如果没有浏览权限就移除展示区域
+                        $.show_warning("提示", "无权限，请联系管理员！");
+                    }
+                } else {
+                    $.show_warning("错误", data.result);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == "timeout") {
+                    $.show_warning("提示", "请求超时，请刷新当前页重试！");
+                }
+                else {
+                    $.show_warning("错误", textStatus + "：" + errorThrown);
+                }
+            }
+        })
+
+        //回车搜索
+        $("#ui_operatelog_search").find('input').on('keyup', function (event) {
+            if (event.keyCode == '13') {
+                ui_operatelog_searchdata();
+            }
+        })
+    });
+    function ui_operatelog_searchdata() {
+        $("#ui_operatelog_dg").datagrid('load', {
+            ui_operatelog_username: $('#ui_operatelog_search').find('[name=ui_operatelog_username]').val(),
+            ui_operatelog_userip: $('#ui_operatelog_search').find('[name=ui_operatelog_userip]').val(),
+            ui_operatelog_info: $('#ui_operatelog_search').find('[name=ui_operatelog_info]').val(),
+            ui_operatelog_description: $('#ui_operatelog_search').find('[name=ui_operatelog_description]').val(),
+            ui_operatelog_success: $('#ui_operatelog_search').find('[name=ui_operatelog_success]').val(),
+            ui_operatelog_operatedatestart: $('#ui_operatelog_search').find('[name=ui_operatelog_operatedatestart]').val(),
+            ui_operatelog_operatedateend: $('#ui_operatelog_search').find('[name=ui_operatelog_operatedateend]').val()
+        });
+        $("#ui_operatelog_dg").datagrid('clearSelections').datagrid('clearChecked');
+        //$('#ui_operatelog_layout').layout('collapse', 'east');    //隐藏
+    }
+    function ui_operatelog_cleardata() {
+        $('#ui_operatelog_search input').val('');
+        $('#ui_operatelog_search select').val('select');
+        $('#ui_operatelog_operatedatestart').datetimebox('setValue', '');
+        $('#ui_operatelog_operatedateend').datetimebox('setValue', '');
+        $("#ui_operatelog_dg").datagrid('load', {});
+
+        $("#ui_operatelog_dg").datagrid('clearSelections').datagrid('clearChecked');
+        //$('#ui_operatelog_layout').layout('collapse', 'east');    //隐藏
+    }
+</script>
+<div id="ui_operatelog_layout" class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'east',split:true,border:true,collapsed:true" title="多条件过滤"
+        style="width: 280px;">
+        <div id="ui_operatelog_search">
+            <table class="tableForm" style="width: 100%; height: 100%; background: #F5F5F5;">
+                <tr>
+                    <th>
+                        操作人：
+                    </th>
+                    <td>
+                        <input name="ui_operatelog_username" autocomplete="off" style="width: 130px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        操作IP：
+                    </th>
+                    <td>
+                        <input name="ui_operatelog_userip" autocomplete="off" style="width: 130px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        操作：
+                    </th>
+                    <td>
+                        <input name="ui_operatelog_info" autocomplete="off" style="width: 130px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        操作明细：
+                    </th>
+                    <td>
+                        <input name="ui_operatelog_description" autocomplete="off" style="width: 130px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        操作成功：
+                    </th>
+                    <td>
+                        <select name="ui_operatelog_success">
+                            <option value="select">请选择</option>
+                            <option value="true">是</option>
+                            <option value="false">否</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        操作时间：
+                    </th>
+                    <td>
+                        <input name="ui_operatelog_operatedatestart" id="ui_operatelog_operatedatestart"
+                            class="easyui-datetimebox" editable="false" style="width: 140px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        至：
+                    </th>
+                    <td>
+                        <input name="ui_operatelog_operatedateend" id="ui_operatelog_operatedateend" class="easyui-datetimebox"
+                            editable="false" style="width: 140px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-search" plain="true"
+                            onclick="ui_operatelog_searchdata();">搜索</a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-clear" plain="true"
+                            onclick="ui_operatelog_cleardata();">清空条件</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div data-options="region:'center',border:false">
+        <table id="ui_operatelog_dg" data-options="fit:true,border:false">
+        </table>
+    </div>
+</div>

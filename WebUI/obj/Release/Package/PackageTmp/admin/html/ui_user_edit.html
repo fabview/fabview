@@ -1,0 +1,50 @@
+﻿<div style="padding: 15px; overflow: hidden">
+    <form id="ui_user_usereditform" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                登录名：
+            </th>
+            <td>
+                <input type="hidden" name="id" id="id" />
+                <input type="hidden" name="originalName" id="originalName" />
+                <input type="text" name="ui_user_userid_edit" id="ui_user_userid_edit" class="easyui-validatebox"
+                    data-options="required:true" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                姓名：
+            </th>
+            <td>
+                <input type="text" name="ui_user_username_edit" id="ui_user_username_edit" class="easyui-validatebox"
+                    data-options="required:true" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                是否启用：
+            </th>
+            <td>
+                <input type="checkbox" name="ui_user_isable_edit" id="ui_user_isable_edit" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                已经改密：
+            </th>
+            <td>
+                <input type="checkbox" name="ui_user_ifchangepwd_edit" id="ui_user_ifchangepwd_edit" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                简介：
+            </th>
+            <td>
+                <textarea rows="3" cols="30" name="ui_user_description_edit" id="ui_user_description_edit"></textarea>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

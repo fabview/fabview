@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="/css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/color.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <script src="/js/easyui-lang-zh_CN.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/common.js"></script>
+</head>
+<body>
+    <div class="easyui-layout" data-options="fit:true,border:false">
+        <div data-options="region:'west',split:true,border:true,collapsed:false,title:'查询条件'"
+             style="width: 270px;">
+            <table id="table_search" cellspacing="8">
+                <tr style="text-align:right">
+                    <td style="width:250px;">工序：<input id="process_code" name="process_code" class="easyui-combobox" /></td><!--<input id="process_code" />--></td>
+                </tr>
+                <tr style="text-align:right">
+                    <td style="width:250px;">物料编码：<input id="parts_no" /></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-search" plain="true"
+                           onclick="wi_search();">查询</a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-ok" plain="true"
+                           onclick="wi_commit();">保存</a>
+                        <a href="javascript:void(0);" class="easyui-linkbutton" iconcls="icon-clear" plain="true"
+                           onclick="wi_reset();">重置</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div data-options="region:'center', title:'订单列表'">
+            <div style="height:35%">
+                <table id="grid_wi" class="easyui-datagrid" fit="true" rownumbers="true" pagination="true">
+                    <thead>
+                        <tr>
+                            <!--<th field="ID" width="50">ID</th>-->
+                            <th field="PROCESS_ID" width="50">工序ID</th>
+                            <th field="PROCESS_CODE" width="100">工序</th>
+                            <th field="PARTS_NO" width="100" align="center">物料</th>
+                            <!--<th field="WI" width="150" style="">是否维护操作指导书</th>-->
+                            <th field="CREATION_DATE" width="150">维护日期</th>
+                            <th field="CREATED_BY" width="150">维护人员</th>
+                            <th field="LAST_UPDATED_DATE" width="150">最后更新日期</th>
+                            <th field="LAST_UPDATED_BY" width="100">最后更新人员</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="wi_editor" style="height:50%"></div>
+        </div>
+    </div>
+
+    <!--富文本编辑器（wangEditor） -->
+    <script type="text/javascript" src="/js/wangEditor/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        var E = window.wangEditor
+        var editor = new E('#wi_editor')
+        editor.customConfig.uploadImgShowBase64 = true
+        editor.create()
+    </script>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(function () {
+        //目标工序
+        $("#process_code").combobox({
+            url: "/ashx/ListProcess.ashx?action=list",
+            method: "post",
+            valueField: 'PROCESS_ID',
+            textField: 'PROCESS_NAME'
+        });
+    });
+
+    function wi_search() {
+        editor.txt.html('');
+        grid_wi = $('#grid_wi').datagrid({
+            pageSize: 30,
+            pageList: [30, 50, 100, 500],
+            fit: true,//自动大小
+            singleSelect: true,//单行选取
+            loadMsg: '数据加载中...',
+            rownumbers: true,//行号
+            url: '/ashx/WorkingInstructionHandler.ashx?action=list',
+            queryParams: {
+                'process_code': $('#process_code').combobox('getText'),
+                'parts_no': $('#parts_no').val()
+            },
+            //frozenColumns: [[
+            //          { field: 'ID', title: 'ID', checkbox: true }
+            //]],
+            onDblClickRow: function (rowIndex, rowData) {
+                editor.txt.html(rowData.WI);
+                $('#process_code').combobox('setText', rowData.PROCESS_CODE);
+                $('#process_code').combobox('setValue', rowData.PROCESS_ID);
+                $('#parts_no').val(rowData.PARTS_NO);
+            }
+        });
+    };
+
+    function wi_commit() {
+        var process_id = $('#process_code').combobox('getValue');
+        var process_code = $('#process_code').combobox('getText');
+        if (process_code == '') {
+            alert('请选择工序。');
+            return;
+        }
+
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "/ashx/WorkingInstructionHandler.ashx?action=save",
+            data:
+            {
+                'process_id': $('#process_code').combobox('getValue'),
+                'parts_no': $('#parts_no').val(),
+                'wi': editor.txt.html(),
+                'user_name': $.cookie('CurUserName')
+            },
+            success: function (json) {
+                alert(process_code + "工序指导书保存成功。");
+            },
+            error: function (XMLResponse) {
+                alert(" 错误信息：" + XMLResponse.responseText);
+            }
+        });
+    };
+
+    function wi_reset() {
+        $('#process_code').combobox('setValues', '');
+        $('#parts_no').val('');
+    }
+</script>

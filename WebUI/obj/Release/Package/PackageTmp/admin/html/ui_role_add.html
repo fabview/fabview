@@ -1,0 +1,34 @@
+﻿<script type="text/javascript">
+    //回车不提交表单，防止报405错误
+    $("#ui_role_roleaddform").find('input').on('keydown', function (e) {
+        var e = e || event;
+        var keyNum = e.which || e.keyCode;
+        return keyNum == 13 ? false : true;
+    })
+    //这里很奇怪：表单里只有一个文本框，在里面按回车就报错，一旦有多个再按回车就不报错了
+    //一个报错：用户首次登陆初始化密码框
+    //多个不报错：用户添加、修改框
+</script>
+<div style="padding: 15px; overflow: hidden">
+    <form id="ui_role_roleaddform" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                角色名称：
+            </th>
+            <td>
+                <input type="text" name="ui_role_rolename_add" id="ui_role_rolename_add" class="easyui-validatebox"
+                    data-options="required:true" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                描&nbsp;述：
+            </th>
+            <td>
+                <textarea rows="3" cols="30" name="ui_role_description_add"></textarea>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

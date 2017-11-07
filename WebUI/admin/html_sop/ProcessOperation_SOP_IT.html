@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="/css/table_h.css" rel="stylesheet" />
+</head>
+<body>
+    <table class="gridtable" summary="Manual for IT">
+        <thead>
+            <tr>
+                <th>操作</th>
+                <th>对象</th>
+                <th>逻辑</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="colum1" rowspan="5">调整工序</td>
+                <td id="colum2">说明</td>
+                <td id="colum3">
+                    1. 调整工序时，订单的状态不能是：完工、挂起<br />
+                    2. 工序调整时，复杂场景是选择2个工序路线：返工工序路线（RWK_ROUTE）、和返工结束后继续生产的工艺路线（RWK_OUT_ROUTE）。
+                    表结构已经包含了这些字段，但为了快速开发，当前实现的逻辑是：返工的工序必须属于订单当前的工艺路线。
+                </td>
+            </tr>
+            <tr>
+                <td id="colum2">HRework(返工表)</td>
+                <td id="colum3">将用户填写的工序调整信息写入HRework表</td>
+            </tr>
+            <tr>
+                <td id="colum2">HOrder(订单表)</td>
+                <td id="colum3">更新订单表的next_process（下个工序）、STATUS（订单状态更新为WAIT）</td>
+            </tr>
+            <tr>
+                <td id="colum2">HTasks(工序任务表)</td>
+                <td id="colum3">
+                    INSERT：目标工序的任务已经执行，返工需要将部分任务打开，再次执行。需重新执行的任务类型为：提示 <br />
+                    （目标工序后面工序的已执行任务是否需要打开，可根据车间需要选择）
+                </td>
+            </tr>
+            <tr>
+                <td id="colum2">HTasks(工序任务表)</td>
+                <td id="colum3">INSERT：新增一笔任务到目标工序及后面所有工序，任务内容：界面输入的“工序调整的原因和注意事项”</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

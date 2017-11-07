@@ -1,0 +1,175 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $.ajax({     //请求当前用户可以操作的按钮
+            url: "ashx/bg_button.ashx?menucode=menu&pagename=ui_menu",
+            type: "post",
+            data: { "action": "getbutton" },
+            dataType: "json",
+            timeout: 5000,
+            success: function (data) {
+                if (data.success) {
+                    var toolbar = getToolBar(data);      //common.js
+                    if (data.browser) {     //判断是否有浏览权限
+                        $("#ui_menu_dg").datagrid({       //初始化datagrid
+                            url: "ashx/bg_menu.ashx?action=search",
+                            striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true, multiSort: true,
+                            idField: 'Id',
+                            sortName: 'ParentId,Sort',
+                            sortOrder: 'asc,asc',
+                            pageList: [20, 40, 60, 80, 100],
+                            frozenColumns: [[
+                                             { field: 'Id', title: '菜单ID', width: 60 },
+                                             { field: 'Name', title: '菜单名称', width: 100 }
+                            ]],
+                            columns: [[
+                                       { field: 'ParentId', title: '父节点ID', sortable: true, width: 80 },
+                                       { field: 'Code', title: '标识码', width: 120 },
+                                       { field: 'LinkAddress', title: '链接地址', width: 200 },
+                                       { field: 'Icon', title: '图标', width: 150 },
+                                       { field: 'Sort', title: '排序', sortable: true, width: 80 },
+                                       { field: 'AddDate', title: '添加时间', width: 130 }
+                            ]],
+                            toolbar: toolbar.length == 0 ? null : toolbar,   //请求回来的当前用户可以操作的按钮
+                            onDblClickRow: function (rowIndex, rowData) {     //双击行弹框编辑
+                                ui_menu_edit();
+                            }
+                        });
+                    }
+                    else {
+                        $.show_warning("提示", "无权限，请联系管理员！");
+                    }
+                } else {
+                    $.show_warning("错误", data.result);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == "timeout") {
+                    $.show_warning("提示", "请求超时，请刷新当前页重试！");
+                }
+                else {
+                    $.show_warning("错误", textStatus + "：" + errorThrown);
+                }
+            }
+        })
+    });
+
+    $('#data-window').window({
+        closed: true
+    });
+
+    var form = $('#data-window').find('form');//form：主界面
+
+    function AddMenu() {     //显示新增数据窗口
+        $('#data-window').window('open');
+        form.form('clear');
+        form.url = 'ashx/bg_menu.ashx?action=add';
+    }
+
+    function closeWindow() {
+        $('#data-window').window('close');
+    }
+
+    function ui_menu_add() {
+        AddMenu();
+    }
+    function ui_menu_edit() {
+        $.show_warning("提示", "菜单编辑");
+    }
+    function ui_menu_delete() {
+        $.show_warning("提示", "菜单删除");
+    }
+    function ui_menu_setbutton() {
+        var row = $("#ui_menu_dg").datagrid("getChecked");
+        if (row.length < 1) {
+            $.show_warning("提示", "请先勾选要分配按钮的菜单");
+            return;
+        }
+        if (row.length > 1) {
+            $.show_warning("提示", "无法批量分配菜单对应的按钮");
+            $("#ui_menu_dg").datagrid('clearSelections').datagrid('clearChecked');
+            return;
+        }
+        if (row[0].ParentId == 0 || row[0].ParentId == "") {
+            $.show_warning("提示", "根节点无法分配按钮");
+            $("#ui_menu_dg").datagrid('clearSelections').datagrid('clearChecked');
+            return;
+        }
+        $.show_warning("提示", "菜单分配按钮");
+    }
+
+    function saveMenu() {
+        var formType = $("#formType").val();
+        var formName = $("#formName").val();
+        var mainFormID = $("#mainFormID").val();
+        var htmlPath = $("#htmlPath").val();
+        
+        if (formType == "subForm") {
+            if (mainFormID == "" || htmlPath == "") {
+                $.show_warning("提示", "维护子界面时，需要输入父项菜单ID、和子界面的HTML路径。");
+                return;
+            }
+        }
+
+        $.post(form.url, { formType: formType, formName: formName, mainFormID: mainFormID, htmlPath: htmlPath },
+            function (result) {
+                if (result.status == 1) {
+                    $.messager.show({
+                        title: '提示',
+                        msg: '数据记录保存成功。'
+                    });
+                } else {
+                    $.messager.alert('错误', result.msg, 'error');
+                }
+            }, 'json');
+    }
+</script>
+<div id="ui_menu_layout" class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'north',border:false" style="color:black;font-size: small">
+        1. 创建主目录时，父项ID需填0；创建子目录时，子目录的父节点ID填父界面的菜单ID。（父项ID：tbMenu.ParentID、菜单ID：tbMenu.ID）<br />
+        2. 新增完页面后，默认为界面分配“浏览”权限（tbMenuButton）<br />
+        3. 将新增界面授权给相应的角色
+    </div>
+    <div data-options="region:'center',border:false">
+        <table id="ui_menu_dg" data-options="fit:true,border:false"></table>
+    </div>
+    <div id="data-window" class="easyui-window" title="添加菜单">
+        <div data-options="region:'center',border:false" style="padding:10px;background:#fff;border:0px solid #ccc;
+        width:930px;height:200px;padding:5px;">
+            <form id="orderForm" method="post">
+                <div class="cont-box" data-options="region:'center',border:false" style="padding:10px;background:#fff;border:0px solid #ccc;">
+                    <div class="cont-box-in">
+                        <div class="cont-box-form">
+                            <div class="line">
+                                <div class="short">
+                                    <label>页面类型：</label>
+                                    <select class="easyui-combobox" id="formType" style="width:150px;" required="required">
+                                        <option value="mainForm">主界面</option>
+                                        <option value="subForm">子界面</option>
+                                    </select>
+                                </div>
+                                <div class="short">
+                                    <label>界面名称：</label>
+                                    <input id="formName"  required="required"/>
+                                </div>
+                                <div class="short">
+                                    <label>父项ID：</label>
+                                    <input id="mainFormID" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="short">
+                                    <label>HTML路径：</label>
+                                    <input id="htmlPath" style="width:630px;" value="/fabview/" placeholder="/fabview/" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div data-options="region:'north'" style="text-align:right;padding:5px 0;">
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveMenu()" id="btn-save">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="closeWindow()" id="btn-cancel">取消</a>
+        </div>
+    </div>
+</div>

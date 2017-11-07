@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="/css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+    <div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
+        <div title="基础数据类别" style="padding:10px">
+            <table id="dd"></table>
+        </div>
+        <div title="基础数据明细" style="padding:10px">
+            <table id="dgDetail"> </table>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var codeCate;
+    $(function () {
+        var datagrid; //定义全局变量datagrid
+        var editRow = undefined; //定义全局变量：当前编辑的行
+        datagrid = $("#dd").datagrid({
+            methord: 'post',
+            url: '/ashx/CodeList.ashx', //请求的数据源
+            iconCls: 'icon-save', //图标
+            pagination: true, //显示分页
+            pageSize: 15, //页大小
+            singleSelect: true,//单行选取
+            pageList: [15, 30, 45, 60], //页大小下拉选项此项各value是pageSize的倍数
+            fit: true, //datagrid自适应宽度
+            fitColumn: false, //列自适应宽度
+            striped: true, //行背景交换
+            nowap: true, //列内容多时自动折至第二行
+            border: false,
+            idField: 'ID', //主键
+            columns: [[//显示的列
+                { field: 'ID', title: '编号', width: 100, sortable: true, hidden: true },
+                {
+                    field: 'CODE_CATE', title: '参数名', width: 150, sortable: true,
+                    editor: { type: 'validatebox', options: { required: true } }
+                },
+                {
+                    field: 'IS_SYSTEM', title: '是否系统参数', width: 100,
+                    editor: { type: 'validatebox', options: { required: true } }
+                },
+                 {
+                     field: 'DESC', title: '参数描述', width: 500,
+                     editor: { type: 'validatebox', options: { required: true } }
+                 }
+            ]],
+            queryParams: { action: 'select' }, //查询参数：传递给ashx
+            toolbar: [{
+                text: '添加', iconCls: 'icon-add', handler: function () {//添加列表的操作按钮添加，修改，删除等
+                    //添加时先判断是否有开启编辑的行，如果有则把开户编辑的那行结束编辑
+                    if (editRow != undefined) {
+                        datagrid.datagrid("endEdit", editRow);
+                    }
+                    //添加时如果没有正在编辑的行，则在datagrid的第一行插入一行
+                    if (editRow == undefined) {
+                        datagrid.datagrid("insertRow", {
+                            index: 0, // index start with 0
+                            row: {
+                            }
+                        });
+                        //将新插入的那一行开启编辑状态
+                        datagrid.datagrid("beginEdit", 0);
+                        //给当前编辑的行赋值
+                        editRow = 0;
+                    }
+                }
+            }, '-',
+             {
+                 text: '删除', iconCls: 'icon-remove', handler: function () {
+                     //删除时先获取选择行
+                     var row = datagrid.datagrid("getSelected");
+                     //选择要删除的行
+                     if (row) {
+                         $.messager.confirm("提示", "你确定要删除吗?", function (r) {
+                             if (r) {
+                                 $.post('/ashx/CodeList.ashx?action=delete_code', { id: row.ID },
+                                     function (result) {
+                                         if (result.status == 1) {
+                                             $('#dd').datagrid('reload');
+                                         } else {
+                                             $.messager.alert('错误', result.msg, 'error');
+                                         }
+                                     },
+                                   'json');
+                             }
+                         });
+                     }
+                     else {
+                         $.messager.alert("提示", "请选择要删除的行", "error");
+                     }
+                 }
+             }, '-',
+             {
+                 text: '修改', iconCls: 'icon-edit', handler: function () {
+                     //修改时要获取选择到的行
+                     var rows = datagrid.datagrid("getSelections");
+                     //如果只选择了一行则可以进行修改，否则不操作
+                     if (rows.length == 1) {
+                         //修改之前先关闭已经开启的编辑行，当调用endEdit该方法时会触发onAfterEdit事件
+                         if (editRow != undefined) {
+                             datagrid.datagrid("endEdit", editRow);
+                         }
+                         //当无编辑行时
+                         if (editRow == undefined) {
+                             //获取到当前选择行的下标
+                             var index = datagrid.datagrid("getRowIndex", rows[0]);
+                             //开启编辑
+                             datagrid.datagrid("beginEdit", index);
+                             //把当前开启编辑的行赋值给全局变量editRow
+                             editRow = index;
+                             //当开启了当前选择行的编辑状态之后，
+                             //应该取消当前列表的所有选择行，要不然双击之后无法再选择其他行进行编辑
+                             datagrid.datagrid("unselectAll");
+                         }
+                     }
+                 }
+             }, '-',
+             {
+                 text: '保存', iconCls: 'icon-save', handler: function () {
+                     //保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
+                     datagrid.datagrid("endEdit", editRow);
+                 }
+             }, '-',
+             {
+                 text: '取消编辑', iconCls: 'icon-redo', handler: function () {
+                     //取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
+                     editRow = undefined;
+                     datagrid.datagrid("rejectChanges");
+                     datagrid.datagrid("unselectAll");
+                 }
+             }, '-',
+            {
+                text: '查看参数行', iconCls: 'icon-mini-add', handler: function () {
+                    //删除时先获取选择行
+                    var row = datagrid.datagrid("getSelected");
+                    //选择要删除的行
+                    if (row) {
+                        $("#tabs").tabs("select", 1);
+                        //$("#dgDetail").datagrid('reload');
+                        //var url = '../../../FabView/Ashx/BasicData/CodeList.ashx?action=select_lines&code_cate=' + row.CODE_CATE;
+                        //$("#dgDetail").datagrid('load', { url: url });
+
+                        $("#dgDetail").datagrid({
+                            methord: 'post',
+                            url: '/ashx/CodeList.ashx?action=select_lines&code_cate=' + row.CODE_CATE, //请求的数据源
+
+                            //queryParams: { action: 'select_lines' }
+                        });
+                        $('#codeCate').val(row.CODE_CATE);
+                        $('#desc').val(row.DESC);
+                    }
+                    else {
+                        $.messager.show({
+                            title: '提示',
+                            msg: '请选择要维护的行。'
+                        });
+                    }
+                }
+            }],
+
+            onAfterEdit: function (rowIndex, rowData, changes) {
+                //endEdit该方法触发此事件
+                console.info(rowData);
+                editRow = undefined;
+                //alert(AR.Utility.Cookie.get('username'));
+                var createdBy = 'admin';
+                $.post('/ashx/CodeList.ashx?action=insert', { CODE_CATE: rowData.CODE_CATE, IS_SYSTEM: rowData.IS_SYSTEM, DESC: rowData.DESC, CREATED_BY: createdBy },
+                        function (result) {
+                            if (result.status == 1) {
+
+                                $.messager.show({
+                                    title: '提示',
+                                    msg: '添加成功。'
+                                });
+
+                                grid.datagrid('reload');
+                            } else {
+                                $.messager.show({
+                                    title: '警告',
+                                    msg: '添加异常。'
+                                });
+                            }
+                        },
+                      'json');
+            },
+            onDblClickRow: function (rowIndex, rowData) {
+                //双击开启编辑行
+                if (editRow != undefined) {
+                    datagrid.datagrid("endEdit", editRow);
+                }
+                if (editRow == undefined) {
+                    datagrid.datagrid("beginEdit", rowIndex);
+                    editRow = rowIndex;
+                }
+            }
+        });
+    });
+
+
+    function submitForm(rowIndex, rowData, changes) {
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "/ashx/CodeList.ashx?action=insert",
+            data: {
+                "code_cate": rowDate.CODE_CATE,
+                "is_system": rowDate.IS_SYSTEM,
+                "desc": rowDate.DESC
+            },
+            success: function (data) {
+                if (data == true) {
+                    alert("保存成功");
+                    $("#dd").datagrid('reload');
+                }
+            }
+        })
+    }
+</script>
+<!--基础数据明细-->
+<script type="text/javascript">
+    $(function () {
+        var datagrid; //定义全局变量datagrid
+        var editRow = undefined; //定义全局变量：当前编辑的行
+        datagrid = $("#dgDetail").datagrid({
+            methord: 'post',
+            //url: '../../../FabView/Ashx/BasicData/CodeList.ashx', //请求的数据源
+            iconCls: 'icon-save', //图标
+            pagination: true, //显示分页
+            pageSize: 15, //页大小
+            singleSelect: true,//单行选取
+            pageList: [15, 30, 45, 60], //页大小下拉选项此项各value是pageSize的倍数
+            fit: true, //datagrid自适应宽度
+            fitColumn: false, //列自适应宽度
+            striped: true, //行背景交换
+            nowap: true, //列内容多时自动折至第二行
+            border: false,
+            idField: 'ID', //主键
+            columns: [[//显示的列
+                { field: 'ID', title: '编号', width: 100, sortable: true, hidden: true },
+                //{
+                //    field: 'CODE_CATE', title: '参数名', width: 150, sortable: true,
+                //    editor: { type: 'validatebox', options: { required: true } }
+                //},
+                {
+                    field: 'CODE_VALUE', title: '参数值', width: 150,
+                    editor: { type: 'validatebox', options: { required: true } }
+                },
+                 {
+                     field: 'CODE_DESC', title: '参数描述', width: 200,
+                     editor: { type: 'validatebox', options: { required: true } }
+                 },
+                {
+                    field: 'CODE1', title: '参数1', width: 100,
+                    editor: { type: 'text' }
+                },
+                {
+                    field: 'CODE2', title: '参数2', width: 100,
+                    editor: { type: 'text' }
+                },
+                {
+                    field: 'CODE3', title: '参数3', width: 100,
+                    editor: { type: 'text' }
+                },
+                {
+                    field: 'CODE4', title: '参数4', width: 100,
+                    editor: { type: 'text' }
+                },
+                {
+                    field: 'CODE5', title: '参数5', width: 100,
+                    editor: { type: 'text' }
+                }
+            ]],
+            queryParams: { action: 'select_lines' }, //查询参数：传递给ashx
+            toolbar: [{
+                text: '添加', iconCls: 'icon-add', handler: function () {//添加列表的操作按钮添加，修改，删除等
+                    //添加时先判断是否有开启编辑的行，如果有则把开户编辑的那行结束编辑
+                    if (editRow != undefined) {
+                        datagrid.datagrid("endEdit", editRow);
+                    }
+                    //添加时如果没有正在编辑的行，则在datagrid的第一行插入一行
+                    if (editRow == undefined) {
+                        datagrid.datagrid("insertRow", {
+                            index: 0, // index start with 0
+                            row: {
+
+                            }
+                        });
+                        //将新插入的那一行开启编辑状态
+                        datagrid.datagrid("beginEdit", 0);
+                        //给当前编辑的行赋值
+                        editRow = 0;
+                    }
+                }
+            }, '-',
+             {
+                 text: '删除', iconCls: 'icon-remove', handler: function () {
+                     //删除时先获取选择行
+                     var row = $("#dgDetail").datagrid("getSelected");
+                     //选择要删除的行
+                     if (row) {
+                         $.messager.confirm("提示", "你确定要删除吗?", function (r) {
+                             if (r) {
+                                 $.post('/ashx/CodeList.ashx?action=delete_lines', { id: row.ID },
+                                     function (result) {
+                                         if (result.status == 1) {
+                                             $("#dgDetail").datagrid('reload');
+                                         } else {
+                                             $.messager.alert('错误', result.msg, 'error');
+                                         }
+                                     },
+                                   'json');
+                             }
+                         });
+                     }
+                     else {
+                         $.messager.alert("提示", "请选择要删除的行", "error");
+                     }
+                 }
+             }, '-',
+             {
+                 text: '修改', iconCls: 'icon-edit', handler: function () {
+                     //修改时要获取选择到的行
+                     var rows = datagrid.datagrid("getSelections");
+                     //如果只选择了一行则可以进行修改，否则不操作
+                     if (rows.length == 1) {
+                         //修改之前先关闭已经开启的编辑行，当调用endEdit该方法时会触发onAfterEdit事件
+                         if (editRow != undefined) {
+                             datagrid.datagrid("endEdit", editRow);
+                         }
+                         //当无编辑行时
+                         if (editRow == undefined) {
+                             //获取到当前选择行的下标
+                             var index = datagrid.datagrid("getRowIndex", rows[0]);
+                             //开启编辑
+                             datagrid.datagrid("beginEdit", index);
+                             //把当前开启编辑的行赋值给全局变量editRow
+                             editRow = index;
+                             //当开启了当前选择行的编辑状态之后，
+                             //应该取消当前列表的所有选择行，要不然双击之后无法再选择其他行进行编辑
+                             datagrid.datagrid("unselectAll");
+                         }
+                     }
+                 }
+             }, '-',
+             {
+                 text: '保存', iconCls: 'icon-save', handler: function () {
+                     //保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
+                     datagrid.datagrid("endEdit", editRow);
+                 }
+             }, '-',
+             {
+                 text: '取消编辑', iconCls: 'icon-redo', handler: function () {
+                     //取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
+                     editRow = undefined;
+                     datagrid.datagrid("rejectChanges");
+                     datagrid.datagrid("unselectAll");
+                 }
+             }, '-'
+             , {
+                 text: '参数名：<input type="text" id="codeCate" style="width:150px" />参数描述：<input type="easyui-textbox" id="desc" style="width:200px"/>'
+             }
+             //, {
+             //    text: '参数描述：<input type="text" id="dcode_desc" style="width:200px" readonly/>'
+             //}
+            ],
+
+            onAfterEdit: function (rowIndex, rowData, changes) {
+                //endEdit该方法触发此事件
+                //console.info(rowData);
+                editRow = undefined;
+                $.post('/ashx/CodeList.ashx?action=insert_lines',
+                    {
+                        ID: rowData.ID,
+                        CODE_CATE: $("#codeCate").val(),
+                        CODE_VALUE: rowData.CODE_VALUE,
+                        CODE_DESC: rowData.CODE_DESC,
+                        CODE1: rowData.CODE1,
+                        CODE2: rowData.CODE2,
+                        CODE3: rowData.CODE3,
+                        CODE4: rowData.CODE4,
+                        CODE5: rowData.CODE5
+                    },
+                        function (result) {
+                            if (result.status == 1) {
+                                $("#dgDetail").datagrid('reload');
+                                $.messager.show({
+                                    title: '提示',
+                                    msg: '保存成功。'
+                                });
+                            } else {
+                                $.messager.show({
+                                    title: '警告',
+                                    msg: '添加异常。请检查参数值是否重复。'
+                                });
+                            }
+                        },
+                      'json');
+            },
+            onDblClickRow: function (rowIndex, rowData) {
+                //双击开启编辑行
+                if (editRow != undefined) {
+                    datagrid.datagrid("endEdit", editRow);
+                }
+                if (editRow == undefined) {
+                    datagrid.datagrid("beginEdit", rowIndex);
+                    editRow = rowIndex;
+                }
+            }
+        });
+    });
+
+    function submitForm(rowIndex, rowData, changes) {
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "../../../FabView/Ashx/BasicData/CodeList.ashx?action=update",
+            data: {
+                "code_cate": rowDate.CODE_CATE,
+                "is_system": rowDate.IS_SYSTEM,
+                "desc": rowDate.DESC
+            },
+            success: function (data) {
+                if (data == true) {
+                    alert("保存成功");
+                    $("#dd").datagrid('reload');
+                }
+            }
+        })
+    }
+</script>

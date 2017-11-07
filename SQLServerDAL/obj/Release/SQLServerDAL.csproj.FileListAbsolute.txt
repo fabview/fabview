@@ -1,0 +1,13 @@
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\ZGZY.SQLServerDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\ZGZY.SQLServerDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\log4net.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\ZGZY.Common.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\Newtonsoft.Json.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\ZGZY.Common.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Release\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\obj\Release\SQLServerDAL.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\obj\Release\ZGZY.SQLServerDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\obj\Release\ZGZY.SQLServerDAL.pdb

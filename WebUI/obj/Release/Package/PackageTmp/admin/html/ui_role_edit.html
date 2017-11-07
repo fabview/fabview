@@ -1,0 +1,33 @@
+﻿<script type="text/javascript">
+    //回车不提交表单，防止报405错误
+    $("#ui_role_roleeditform").find('input').on('keydown', function (e) {
+        var e = e || event;
+        var keyNum = e.which || e.keyCode;
+        return keyNum == 13 ? false : true;
+    })
+</script>
+<div style="padding: 15px; overflow: hidden">
+    <form id="ui_role_roleeditform" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                角色名称：
+            </th>
+            <td>
+                <input type="hidden" name="id" id="id" />
+                <input type="hidden" name="originalName" id="originalName" />
+                <input type="text" name="ui_role_rolename_edit" id="ui_role_rolename_edit" class="easyui-validatebox"
+                    data-options="required:true" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                描&nbsp;述：
+            </th>
+            <td>
+                <textarea rows="3" cols="30" name="ui_role_description_edit" id="ui_role_description_edit"></textarea>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

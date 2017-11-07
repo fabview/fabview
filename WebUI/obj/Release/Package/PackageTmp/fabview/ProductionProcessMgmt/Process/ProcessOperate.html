@@ -1,0 +1,594 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="/css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/color.css" rel="stylesheet" />
+    <style type="text/css">
+        table.gridtable {
+            /*font-family: verdana,arial,sans-serif;*/
+            font-family: Microsoft YaHei;
+            font-weight: normal;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+
+            table.gridtable th {
+                border-width: 1px;
+                padding: 4px;
+                border-style: solid;
+                border-color: #666666;
+                background-color: #dedede;
+            }
+
+            table.gridtable td {
+                border-width: 1px;
+                padding: 4px;
+                border-style: solid;
+                border-color: #666666;
+                background-color: #ffffff;
+            }
+    </style>
+
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/easyui-lang-zh_CN.js"></script>
+</head>
+<body class="easyui-layout">
+    <div id="divChooseProcess" class="easyui-window" data-options="title:'选择工序和工位',region:'center',border:false"
+         style="width:400px;height:300px;padding:10px;background:#fff;border:0px solid #ccc;">
+        <div class="cont-box-in">
+            <div class="cont-box-form">
+                <div class="line">
+                    <div class="short">
+                        <label>工序：</label>
+                        <!--<input id="comboProcess" class="easyui-combobox" style="width:150px">-->
+                        <select class="easyui-combobox" id="comboProcess" style="width:150px;" required="required"></select>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="short">
+                        <label>线体：</label>
+                        <input id="comboProcessStep" class="easyui-combobox" style="width:150px">
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="short">
+                        <label>设备：</label>
+                        <input id="comboTool" class="easyui-combobox" style="width:150px">
+                    </div>
+                </div>
+                <div style="text-align:center">
+                    <div>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="saveProcess()"
+                           data-options="iconCls:'icon-save'" id="btn-save">保存</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="closeProcessForm();"
+                           data-options="iconCls:'icon-cancel'" id="btn-cancel">取消</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="easyui-layout" data-options="fit:true">
+        <div data-options="region:'north', height:50" style="vertical-align:central">
+            <div style="padding:15px; float:left">
+                <label>订单/产品：</label>
+                <input id="txtProductID" class="easyui-textbox" style="width:150px">
+                <a href="#" class="easyui-linkbutton" onclick="Reset()" id="btn-save">重置</a>
+            </div>
+            <div style="padding:15px; float:left">
+                <label>物料条码：</label>
+                <input id="txtPartsBarcode" class="easyui-textbox" style="width:150px">
+                <a href="#" class="easyui-linkbutton" onclick="BarcodeScan()" id="btn-barcodescan">确认</a>
+                <a href="#" class="easyui-linkbutton" onclick="TrackOut()" id="btn-save">出站</a>
+            </div>
+
+            <div style="padding:15px; float:right">
+                <label>操作人：</label>
+                <input id="txtCurOperator" style="width:100px" />
+                <label>工序：</label>
+                <input id="txtCurProcess" style="width:100px" disabled="disabled" />
+                <label>设备：</label>
+                <input id="txtCurTool" style="width:100px" disabled="disabled" />
+                <a href="#" class="easyui-linkbutton" onclick="chooseProcess()" id="btn-save">设置工序</a>
+            </div>
+            <div>
+
+            </div>
+        </div>
+
+        <div data-options="region:'west', split:true, minWidth:200, width:550, title:'物料采集清单'">
+            <div id="main-nav" class="easyui-accordion" data-options="fit:true, border:false, selected:true">
+                <table id="tPartsList"></table>
+            </div>
+        </div>
+        <div data-options="region:'center'">
+            <div id="main-tab" class="easyui-tabs" data-options="fit:true, border:false">
+                <div title="生产指令" style="padding: 5px;">
+                    <!--<iframe id="frameCheckList" width="100%"  height="100%" scrolling="no" frameborder="0" src="WorkingInstruction.html" marginheight="0" marginwidth="0" onload="changeFrameHeight()"></iframe>-->
+                    <table style="width:100%; height:350px">
+                        <tr>
+                            <td valign="top">
+                                <table class="gridtable" id="tCheckList" style="width: 100%; display:none">
+                                    <tbody>
+                                        <tr>
+                                            <th style="width: 30px;">序号</th>
+                                            <th style="width: 100px;">检查项目</th>
+                                            <th style="width: 100px;">检查结果</th>
+                                            <th style="width: 100px;">备注</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <td valign="bottom">
+                                <textarea style="width:100%;resize: none;height:100px;font-size:12px;
+                                font-family: Microsoft YaHei;" id="txtNote">工序备注
+                                </textarea>
+                            </td>
+                        </tr>-->
+                    </table>
+                </div>
+                <div title="产品板位图" style="padding: 5px;">
+                    <label id="operate_note"></label>
+                    <img id="operate_img" />
+                </div>
+                <div title="操作指导书" style="padding: 5px;">
+                    <!--<iframe id="frameWI" style="width:100%; height:100%" scrolling="no" frameborder="0" marginheight="0" marginwidth="0" onload="changeFrameHeight()"></iframe>-->
+                    <label id="operate_wi"></label>
+                </div>
+                <div title="生产备注" style="padding: 5px;">
+                    <textarea rows="3" style="resize:none;width:99%;height:99%;font-size:12px;margin:1px; font-family: Microsoft YaHei;"
+                              id="production_note" placeholder="如有需要，请给后工序添加生产备注。"></textarea>
+                </div>
+            </div>
+        </div>
+        <div data-options="region:'south', height:50">
+            <p style="text-align:center; line-height:20px;"></p>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    /*************1.初始化 开始**************/
+    $('#divChooseProcess').window({
+        closed: true
+    });
+
+    function loadProcess() {
+        $("#comboProcess").combobox({
+            url: "/ashx/ListProcess.ashx?action=list",
+            method: "post",
+            valueField: 'PROCESS_ID',
+            textField: 'PROCESS_NAME'
+        });
+        $("#comboTool").combobox({
+            url: "../../ashx/zzCommon/ListCode.ashx?action=list&code_cate=tool",
+            method: "post",
+            valueField: 'CODE_VALUE',
+            textField: 'CODE_DESC'
+        });
+    }
+    var cookieCurProcess = $.cookie('cookieCurProcess');
+    //加载Cookie，获取当前工序、工位、和设备
+    $('#txtCurProcess').val($.cookie('cookieCurProcess'));
+    $('#txtCurTool').val($.cookie('cookieCurTool'));
+    $('#txtCurOperator').val($.cookie('CurUserName'));
+
+    $.cookie('cookieCurProcess', $('#txtCurProcess').val(), { expires: 3, path: '/' });
+    $.cookie('CurTool', $('#txtCurTool').val(), { expires: 3, path: '/' });
+
+    function Reset() {
+        $("#txtProductID").attr("disabled", false); //启用产品ID输入框
+        $("#txtProductID").val(''); //清空产品ID输入框
+        $("#txtProductID").focus();//焦点
+        $('#tCheckList tr:gt(0)').remove();//清空检查项目表格
+        //$("#txtNote").val('工序备注'); //清空工序备注
+        $('#txtCurOperator').attr("disabled", false);//激活当前操作人员输入框
+        $('#tPartsList').datagrid('loadData', { total: 0, rows: [] });//清空条码采集清单
+        $("#production_note").val('');//清空生产备注
+    }
+
+    //加载操作指导书
+    LoadWI();
+
+    //function changeFrameHeight() {
+    //    var ifmCheckList = document.getElementById("frameCheckList");
+    //    ifmCheckList.clientHeight = document.documentElement.clientHeight;
+
+    //    var ifmWI = document.getElementById("frameWI");
+    //    ifmWI.height = document.documentElement.clientHeight;
+    //}
+    //window.onresize = function () {
+    //    changeFrameHeight();
+    //}
+    /*************1.初始化 结束**************/
+
+    //2.初始化条码采集列表
+    var gridParts;
+    var barcode;
+    $(function () {
+        gridParts = $("#tPartsList").datagrid({
+            fit: true,
+            fitColumn: false,
+            striped: true,
+            nowap: true,
+            border: false,
+            columns: [[
+                { field: 'parts_no', title: '物料编码', width: 150 },
+                { field: 'qty', title: '数量', width: 50 },
+                { field: 'parts_desc', title: '物料描述', width: 150 },
+                { field: 'barcode', title: '条码', width: 200 }
+            ]],
+        });
+    });
+
+    //3.加载本工序的检查项目
+    function LoadCheckList() {
+        $('#tCheckList').show();
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "/ashx/TaskHandler.ashx",
+            data:
+            {
+                'action': 'list',
+                'task_type': 'CHECK',
+                'process_name': $('#txtCurProcess').val()
+            },
+            success: function (json) {
+                $('#tCheckList tr:gt(0)').remove();//删除之前的数据
+                var s = '';
+                for (var i = 0; i < json.length; i++) s += '<tr><td>' + (Number(i) + 1) + '</td><td>' + json[i].TASK
+                    + '</td><td><select id="comboResult" editable="false" style="width:100px"><option></option><option value="Pass">Pass</option><option value="Fail">Fail</option></select></td>'
+                    + '<td><input type="text"/></td></tr>';
+                $('#tCheckList').append(s);
+            },
+            error: function (XMLResponse) {
+                alert(" 错误信息：" + XMLResponse.responseText);
+            }
+        });
+    }
+
+    //进站
+    function TrackIn() {
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "/ashx/ProcessHandler.ashx",
+            data: {
+                "action": "track_in",
+                "sub_order": $('#txtProductID').val(),
+                "user_name": $('#txtCurOperator').val(),
+                "process_name": $('#txtCurProcess').val()
+            },
+            success: function (data) {
+                if (data == true) { }
+            },
+            error: function (data) {
+                alert(" 错误信息：" + data.msg);
+            }
+        });
+    }
+
+    //加载待采集的条码清单
+    function ListParts() {
+        gridParts.datagrid({
+            methord: 'post',
+            url: '../../../../FabView/Ashx/ProductionProcessMgmt/Process/ListPartsNo.ashx',
+            queryParams: {
+                wo_number: $('#txtProductID').val(),
+                process_name: $('#txtCurProcess').val()
+            }
+        });
+
+        gridParts.datagrid({
+            rowStyler: function (index, row) {
+                if (row.qty == 0) {
+                    return 'background-color:pink;';
+                }
+            }
+        });
+    }
+
+    //选择工序：打开窗口
+    function chooseProcess() {
+        loadProcess();
+        $('#divChooseProcess').window('open');
+    }
+
+    function closeProcessForm() {
+        $('#divChooseProcess').window('close');
+    }
+
+    function saveProcess() {
+        var process = $('#comboProcess').combobox('getText');
+        var tool = $('#comboTool').combobox('getText');
+        $('#txtCurProcess').val(process);
+        $('#txtCurTool').val(tool);
+
+        // 将选择的工序、工位和设备保存到Cookie中，下次登录不用再次选择
+        $.cookie('cookieCurProcess', process, { expires: 3, path: '/' });
+        $.cookie('CurTool', tool, { expires: 3, path: '/' });
+
+        LoadWI();
+        $('#divChooseProcess').window('close');
+    }
+
+    //输入订单号处理逻辑
+    $(function () {
+        $('#txtProductID').bind('keypress', function (event) {
+            if (event.keyCode == "13") {
+                /***********校验输入是否正确 开始**********/
+                //工序不能为空，需要先设置工序
+                if ($('#txtCurProcess').val() == '') {
+                    $.show_warning('', '请选择工序。');
+                    return;
+                }
+                //订单号不可以为空
+                if ($('#txtProductID').val() == '') {
+                    $.show_warning('', '请输入订单号。');
+                    return;
+                }
+                //操作人工号不能为空
+                if ($('#txtCurOperator').val() == '') {
+                    $.show_warning('', '请输入操作人员工号。');
+                    return;
+                }
+                var validation = true;
+                var currentProcess = null;
+                //检查订单号是否存在
+                $.ajax({
+                    type: "post",
+                    async: false,//使用AJAX同步的方式执行
+                    dataType: "json",
+                    url: "/ashx/CheckHandler.ashx",
+                    data: { 'action': 'check_sub_order', 'sub_order': $('#txtProductID').val() },
+                    success: function (dataTable) {
+                        if (dataTable.length == 0) {
+                            $.show_warning('', '此子订单号不存在，请确认。');
+                            validation = false;
+                        }
+                        //判断订单的当前工序是否和前台选择的一致 begin
+                        if (dataTable[0]["STATUS"] == "IN-PROCESS") {
+                            currentProcess = dataTable[0]["CUR_PROCESS"];
+                            if (dataTable[0]["CUR_PROCESS"] != $('#txtCurProcess').val()) {
+                                $.show_warning('', '此订单的当前工序是' + currentProcess + '，请确认。');
+                                validation = false;
+                            }
+                        } else if (dataTable[0]["STATUS"] == "WAIT" || dataTable[0]["STATUS"] == "SCHEDULED") {
+                            currentProcess = dataTable[0]["NEXT_PROCESS"];
+                            if (dataTable[0]["NEXT_PROCESS"] != $('#txtCurProcess').val()) {
+                                $.show_warning('', '此订单的当前工序是' + currentProcess + '，请确认。');
+                                validation = false;
+                            }
+                        } else {
+                            $.show_warning('', '此订单的状态不正确：' + dataTable[0]["STATUS"] + '，请确认。');
+                            validation = false;
+                        }
+                        //判断订单的当前工序是否和前台选择的一致 end
+                    },
+                    error: function (XMLResponse) {
+                        validation = false;
+                        alert(" 错误信息：" + XMLResponse.statusText);
+                    }
+                });
+
+                if (!validation) {
+                    return;
+                }
+                /***********校验输入是否正确 结束**********/
+
+                ListParts();//加载条码采集清单
+                LoadCheckList();//加载本工序的检查项目
+                TrackIn();//进站
+
+                var img_name = "/images/product/" + $('#txtProductID').val() + ".jpg";
+                document.getElementById("operate_img").src = img_name;
+                $("#txtProductID").attr("disabled", true);
+                $('#txtCurOperator').attr("disabled", true);
+                $('#txtPartsBarcode').focus();
+            }
+        });
+
+        //采集条码逻辑
+        $('#txtPartsBarcode').bind('keypress', function (event) {
+            if (event.keyCode == "13") {
+                BarcodeScan();
+            }
+        });
+    });
+
+    //采集条码操作
+    function BarcodeScan() {
+        barcode = $('#txtPartsBarcode').val();
+
+        //按需采集条码逻辑 开始
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "/ashx/ListPartsNo.ashx",
+            data: {
+                "action": "insert",
+                "product_id": $('#txtProductID').val(),
+                "barcode": barcode,
+                "process_name": $('#txtCurProcess').val(),
+                "user_name": $('#txtCurOperator').val()
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    $('#txtPartsBarcode').val('');
+                    $("#tPartsList").datagrid('reload');
+                }
+            }
+        });
+        //按需采集条码逻辑 结束
+
+        //xujiyuan 条码采集模式：按需采集，不需要先设置待采集清单-->
+        //var rows = gridParts.datagrid('getRows');
+        //for (var i = 0; i < rows.length; i++) {
+        //    //对一个编码有多个数量时，用于拼接采集的条码
+        //    if (rows[i]["parts_no"] == barcode && parseInt(rows[i]["qty"]) > 0) {
+        //        if (typeof (rows[i]["barcode"]) == "undefined") {
+        //            gridParts.datagrid("updateRow", {
+        //                index: i,
+        //                row: { barcode: '' }
+        //            });
+        //        }
+
+        //        //使用分数的形式（如2/3）表示已经数量和需要采集的总数量，暂时不实现。
+        //        //var qtys = parseString(rows[i]["qty"]).split("/");
+
+        //        //将条码更新到列表中
+        //        gridParts.datagrid("updateRow", {
+        //            index: i,
+        //            row: {
+        //                barcode: barcode + ";" + rows[i]["barcode"],
+        //                qty: parseInt(rows[i]["qty"]) - 1
+        //            }
+        //        });
+
+        //        //条码写入数据库
+        //        $.ajax({
+        //            type: "get",
+        //            async: false,
+        //            url: "/ashx/ListPartsNo.ashx",
+        //            data: {
+        //                "action": "insert",
+        //                "product_id": $('#txtProductID').val(),
+        //                "barcode": barcode,
+        //                "process_name": $('#txtCurProcess').val(),
+        //                "user_name": $('#txtCurOperator').val()
+        //            },
+        //            success: function (data) {
+        //                if (data == true) {
+        //                    alert("保存成功");
+        //                    $("#tPartsList").datagrid('reload');
+        //                }
+        //            }
+        //        });
+
+        //        $('#txtPartsBarcode').val("");
+        //        return;
+        //    }
+        //}<--xujiyuan 条码采集模式：按需采集，不需要先设置待采集清单
+    }
+
+    //出站按钮
+    function TrackOut() {
+        var validation = true;
+        //检查订单状态
+        $.ajax({
+            type: "post",
+            async: false,//使用AJAX同步的方式执行
+            dataType: "json",
+            url: "/ashx/CheckHandler.ashx",
+            data: { 'action': 'check_sub_order', 'sub_order': $('#txtProductID').val() },
+            success: function (dataTable) {
+                if (dataTable.length == 0) {
+                    $.show_warning('', '此子订单号不存在，请确认。');
+                    validation = false;
+                }
+                if (dataTable[0]["STATUS"] != "IN-PROCESS") {
+                    $.show_warning('', '此订单的状态不是IN-Process，不可以出站。');
+                    validation = false;
+                } else if (dataTable[0]["CUR_PROCESS"] != $('#txtCurProcess').val()) {
+                    $.show_warning('', '此订单的当前工序不是' + $('#txtCurProcess').val() + '，请确认。');
+                    validation = false;
+                }
+            },
+            error: function (XMLResponse) {
+                validation = false;
+                alert(" 错误信息：" + XMLResponse.responseText);
+            }
+        });
+        if (!validation) {
+            return;
+        }
+
+        var arrTR = $("#tCheckList").children();
+        var Context = "";
+        var i = 0;
+        $("#tCheckList").find("tr").each(function () {
+            if (i != 0) {//i=0为表格的表头，不用取这行数据
+                var arrtd = $(this).children();
+                tdContext = $.trim(arrtd.eq(0).text());
+                tdContext += ":" + arrtd.eq(1).text();
+                tdContext += ":" + arrtd.eq(2).find("select").val();
+                tdContext += ":" + arrtd.eq(3).find("input").val() + ";";
+                Context += tdContext;
+
+                if (arrtd.eq(2).find("select").val() == '') {
+                    $.show_warning('', '点检结果不可以为空。');
+                    return;
+                }
+            }
+            i++;
+        });
+
+        //Context：点检结果（包含点检项目、点检结果、备注），格式：1:温度:Pass;
+        //出站操作数据库
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "/ashx/ProcessHandler.ashx",
+            data: {
+                "action": "track_out",
+                "sub_order": $('#txtProductID').val(),
+                "process_name": $('#txtCurProcess').val(),
+                "check_result": Context.substr(0, Context.length - 1),
+                "user_name": $('#txtCurOperator').val(),
+                "production_note": $('#production_note').val()
+            },
+            success: function (data) {
+                if (data.status == 1) {
+                    Reset();
+                } else {
+                    //var obj = jQuery.parseJSON(data.item);
+                    //$.show_error("", data.msg, obj.wo_number[0].wo_number);
+                    $.show_warning('', data.msg);
+                    return;
+                }
+            },
+            error: function (data) {
+                $.show_error("", data.msg, $('#txtProductID').val());
+            }
+        });
+
+        document.getElementById("operate_img").src = '';//清空订单照片
+        $("#operate_note").html('');//清空订单备注
+
+    }
+
+    function LoadWI() {
+        var process_name = $('#txtCurProcess').val();
+        if (process_name == '' || process_name == null) {
+            return;
+        }
+
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ashx/WorkingInstructionHandler.ashx?action=list",
+            data: {
+                "action": "list",
+                "process_code": process_name
+            },
+            success: function (data) {
+                var rowData = data[0]["WI"];
+                $("#operate_wi").html(rowData);
+            }
+        });
+    }
+</script>

@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="/css/jquery-easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
+    <!--<script src="/js/jquery-1.7.1.min.js"></script>-->
+    <script src="/js/easyui-lang-zh_CN.js"></script>
+    <script src="../../../js/jquery.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/common.js"></script>
+</head>
+<body>
+    <div class="easyui-layout" data-options="fit:true">
+        <table id="tt" class="easyui-datagrid" fit="true" toolbar="#tb"
+               rownumbers="true" pagination="true">
+            <thead>
+                <tr>
+                    <th field="ORDER_NUMBER" width="150">订单</th>
+                    <th field="ORDER_TYPE" width="100" align="center">订单类型</th>
+                    <th field="SUB_ORDER" width="150">子订单</th>
+                    <th field="SUB_ORDER_DESC" width="100">子订单描述</th>
+                    <th field="PROCESS_DAYS" width="80">加工天数</th>
+                    <th field="ESTIMATE_PACK_DATE" width="150">预计交单日期</th>
+                    <th field="ORDER_DATE" width="100" align="center">下单日期</th>
+                    <th field="STATUS" width="100" align="center">订单状态</th>
+                    <th field="DISTRIBUTOR" width="100" align="center">医院</th>
+                    <th field="DT_CONTACT" width="100" align="center">医生</th>
+                    <th field="END_CUSTOMER" width="100" align="center">病人</th>
+                    <th field="END_CUST_SEX" width="100" align="center">性别</th>
+                    <th field="END_CUST_AGE" width="100" align="center">年龄</th>
+                    <th field="PROCESS_DAYS" width="100" align="center">加工周期</th>
+                    <th field="NOTE" width="100" align="center">订单备注</th>
+                    <th field="PROD_CATE" width="100" align="center">产品类型</th>
+                    <th field="PROD_NAME" width="100" align="center">产品名称</th>
+                    <th field="PROCESS_TYPE" width="100" align="center">工艺类型</th>
+                    <th field="PROD_COLOR" width="100" align="center">牙色</th>
+                    <th field="PROD_POSITION" width="100" align="center">牙位</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    
+    <div id="tb" style="height:150px;width:1000px;">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'center',border:false" style="background:#fff;border:0px solid #ccc;">
+                <div class="cont-box" data-options="region:center,border:false" style="text-align:left;background:#fff;border:0px solid #ccc;">
+                    <div class="cont-box-in">
+                        <div class="cont-box-form">
+                            <div class="line">
+                                <div class="short">
+                                    <label>订单号：</label>
+                                    <input type="text" id="order_number" />
+                                </div>
+                                <div class="short">
+                                    <label>预计交单日期：</label>
+                                    <input class="easyui-datebox" style="width:150px" editable="false" id="estimate_pack_date_begin" data-options="formatter:myformatter,parser:myparser" />
+                                </div>
+                                <div class="short">
+                                    <label>预计交单日期：</label>
+                                    <input class="easyui-datebox" style="width:150px" editable="false" id="estimate_pack_date_end" data-options="formatter:myformatter,parser:myparser" />
+                                </div>
+                            </div>
+                            <div class="line">
+                                <div class="short">
+                                    <label>子订单：</label>
+                                    <input id="sub_order" />
+                                </div>
+                                <!--<div class="short">
+                                    <label>医生：</label>
+                                    <input name="order_number" />
+                                </div>
+                                <div class="short">
+                                    <label>销售：</label>
+                                    <input name="order_number" />
+                                </div>-->
+                            </div>
+                            <!--<div class="line">
+                                <div class="short">
+                                    <label>病人：</label>
+                                    <input name="order_number" />
+                                </div>
+                                <div class="short">
+                                    <label>年龄：</label>
+                                    <input name="order_number" />
+                                </div>
+                                <div class="short">
+                                    <label>性别：</label>
+                                    <input name="order_number" />
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-options="region:'south',border:false" style="text-align:left;padding:5px 0;">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="Search()" id="btnSearch">查询</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-clear'" onclick="Reset()" id="btnClear">重置</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="Schedule()" id="btnSchedule">排产</a>
+                计划生产日期：<input id="BeginPrdDate" class="easyui-datebox" editable="false" style="width:150px" data-options="formatter:myformatter,parser:myparser" />
+                排产班次：
+                <select name="comboShift" class="easyui-combobox" editable="false" style="width:150px">
+                    <option value="NIGHT">00:00 - 08:00</option>
+                    <option value="DAY_A">08:00 - 12:00</option>
+                    <option value="DAY_B">12:00 - 18:00</option>
+                    <option value="DAY_C">18:00 - 24:00</option>
+                </select>
+            </div>
+            
+        </div>
+    </div>
+    <!--<div class="easyui-tabs" data-options="region:'east',split:true,border:true,collapsed:true" title="用户手册"
+         style="width: 550px;">
+        <div title="界面使用说明" style="padding:5px">
+            <div id="page1" style="overFlow: scroll;height:100%"></div>
+            <script>
+                        $("#page1").load("/admin/html_sop/Schedule_SOP_User.html");
+            </script>
+        </div>
+        <div title="IT逻辑说明" style="padding:5px">
+            <div id="page2" style="overFlow: scroll;height:100%"></div>
+            <script>
+                        $("#page2").load("/admin/html_sop/Schedule_SOP_IT.html");
+            </script>
+        </div>
+    </div>-->
+</body>
+</html>
+<script type="text/javascript">
+    var grid;
+    function Search() {
+        grid = $('#tt').datagrid({
+            pageSize: 20,
+            pageList: [10, 15, 20, 30, 100],
+            fit: true,//自动大小
+            loadMsg: '数据加载中...',
+            rownumbers: true,//行号
+            url: '/ashx/ScheduleHandler.ashx?action=list',
+            queryParams: {
+                'order_number': $('#order_number').val(),
+                'estimate_pack_date_begin': $('#estimate_pack_date_begin').datebox('getValue'),
+                'estimate_pack_date_end': $('#estimate_pack_date_end').datebox('getValue'),
+                'sub_order': $('#sub_order').val()
+            },
+            frozenColumns: [[
+                      { field: 'ORDERID', title: 'ID', checkbox: true }]]
+        });
+    };
+
+    function Schedule() {
+        if ($('#BeginPrdDate').combobox('getText') == '') {
+            //$('#BeginPrdDate').focus();
+            $.show_warning('', '计划生产日期不能为空。');
+            return;
+        }
+
+        var url = "/ashx/ScheduleHandler.ashx";
+        var rows = grid.datagrid('getSelections');
+        var orders = [];
+        for (var i = 0; i < rows.length; i++) {
+            orders.push("'" + rows[i].SUB_ORDER + "'");
+        }
+
+        if (rows.length > 0) {
+            $.messager.confirm('Confirm', '您确定提交吗?', function (r) {
+                if (r) {
+                    $.post(url,
+                            {
+                                'action': "schedule",
+                                'begin_production_date': $('#BeginPrdDate').combobox('getText'),
+                                'sub_order': orders.join(',')
+                            },
+                function (result) {
+                    if (result.status == 1) {
+                        grid.datagrid('reload');
+                        $.show_success('', '排产成功。');
+                    } else {
+                        //$.messager.alert('错误', result.msg, 'error');
+                        var obj = jQuery.parseJSON(result.item);
+                        $.show_error("", result.msg, obj.wo_number[0].wo_number);
+                    }
+                }, 'json');
+                }
+            });
+        } else {
+            $.show_warning('', '请选择排产订单。');
+            return;
+        }
+    }
+
+    function Reset() {
+        $("#tb input").val("");
+    }
+
+    function myformatter(date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        return y + '-' + (m < 10 ? ('0' + m) : m) + '-' + (d < 10 ? ('0' + d) : d);
+    }
+    function myparser(s) {
+        if (!s) return new Date();
+        var ss = (s.split('-'));
+        var y = parseInt(ss[0], 10);
+        var m = parseInt(ss[1], 10);
+        var d = parseInt(ss[2], 10);
+        if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
+            return new Date(y, m - 1, d);
+        } else {
+            return new Date();
+        }
+    }
+</script>

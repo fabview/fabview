@@ -1,0 +1,98 @@
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.pdb
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\log4net.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.pdb
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.pdb
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.pdb
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\bin\Debug\log4net.xml
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\obj\Debug\ResolveAssemblyReference.cache
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.dll
+E:\Downloads\工作积累\html + ajax + ashx + easyui 权限管理系统\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.pdb
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.dll
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.pdb
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\log4net.dll
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.dll
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.dll
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.dll
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.pdb
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.pdb
+E:\代码\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.pdb
+E:\代码\ZGZY\SQLServerDAL\obj\Debug\ResolveAssemblyReference.cache
+E:\代码\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.dll
+E:\代码\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\log4net.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.pdb
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.dll
+C:\Users\Administrator\Desktop\ZGZY 原版\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\log4net.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.pdb
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\obj\Debug\ResolveAssemblyReference.cache
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.dll
+F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\log4net.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\obj\Debug\ResolveAssemblyReference.cache
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\log4net.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Common.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.IDAL.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\bin\Debug\ZGZY.Model.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\obj\Debug\SQLServerDAL.csprojResolveAssemblyReference.cache
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\log4net.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\ZGZY.Common.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\ZGZY.Model.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\ZGZY.Common.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\bin\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\obj\Debug\SQLServerDAL.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\ZGZY.SQLServerDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\log4net.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\ZGZY.Common.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\ZGZY.Common.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\obj\Debug\SQLServerDAL.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\obj\Debug\ZGZY.SQLServerDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\SQLServerDAL\bin\Debug\Newtonsoft.Json.dll

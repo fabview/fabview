@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../js/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+</head>
+<body class="easyui-layout">
+    <div region="center" style="padding:5px;" border="false">
+        <table id="tt" fit="true"></table><!--表格：名称为：tt-->
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var grid;
+    $(function () {
+        grid = $('#tt').datagrid({
+            pageSize: 15,
+            pageList: [10, 15, 20, 30],
+            fit: true,//自动大小
+            rownumbers: true,//行号
+            url: '/ashx/TestHandler.ashx?action=select',//调用后台方法获取数据库数据
+            loadMsg:'数据装载中......',
+            //singleSelect: true,//单行选取
+
+            pagination: true,//显示分页
+            /*******给表格定义4列 开始********/
+            frozenColumns: [[
+                      { field: 'ID', title: 'ID', checkbox: true },
+                      { field: 'CODE_VALUE', title: '工序名称', width: 100, sortable: true }
+            ]],
+            columns: [[
+                      { field: 'CODE1', title: '工序编号', width: 100 },
+                      { field: 'CODE_DESC', title: '工序描述', width: 100 }
+            ]],
+            /*******给表格定义4列 结束********/
+
+            /*******给表格定义2个按钮 开始********/
+            toolbar: [{
+                text: '保存',
+                iconCls: 'icon-save',
+                handler: SaveRoute
+            }, '-', {
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: ReLoad
+            }]
+            /*******给表格定义2个按钮 结束********/
+        });
+    });
+
+    //重新加载表格
+    function ReLoad() {
+        grid.datagrid('load', { url: '/ashx/TestHandler.ashx?action=select' });
+    }
+
+    //创建一个函数，用来保存选中的工序、给订单生成工艺路线
+    function SaveRoute() {
+        var rows = grid.datagrid('getSelections');//获取选中的行
+        var wo = '123';//假定订单号为123
+        var ids = [];//定义一个数字，用来保存工序的ID
+        for (var i = 0; i < rows.length; i++) {//循环选中的行
+            ids.push(rows[i].ID);//将每一行的ID记录到数组中
+        }
+
+        if (rows) {//如果选中的行数大于1
+            $.messager.confirm('Confirm', '您确定提交吗?', function (r) {
+                if (r) {//点确定按钮，进入下面的逻辑
+                    /*******ajax调用后台方法和数据库交互。向后台传入了3个参数，分别是action、id、wo_number 开始********/
+                    $.post('/ashx/TestHandler.ashx?action=create', { id: ids.join(','), wo_number: wo },
+                        function (result) {
+                            if (result.status == 1) {
+                                grid.datagrid('reload');
+                            } else {
+                                $.messager.alert('错误', result.msg, 'error');
+                            }
+                        },
+                      'json');
+                    /*******ajax调用后台方法和数据库交互。向后台传入了3个参数，分别是action、id、wo_number 结束********/
+                }
+            });
+        } else {
+            $.messager.show({
+                title: '警告',
+                msg: '请先选择数据记录。'
+            });
+        }
+    }
+</script>

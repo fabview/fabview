@@ -1,0 +1,81 @@
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.WebUI.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.WebUI.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\log4net.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.BLL.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.Common.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.Model.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.SQLServerDAL.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.IDAL.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.DALFactory.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.BLL.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.Common.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.Model.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.SQLServerDAL.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.IDAL.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\bin\ZGZY.DALFactory.pdb
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\obj\Debug\ResolveAssemblyReference.cache
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\obj\Debug\ZGZY.WebUI.dll
+E:\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\WebUI\obj\Debug\ZGZY.WebUI.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.WebUI.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.WebUI.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\log4net.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.BLL.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.Common.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.Model.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.SQLServerDAL.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.IDAL.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.DALFactory.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.BLL.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.Common.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.Model.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.SQLServerDAL.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.IDAL.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\bin\ZGZY.DALFactory.pdb
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\obj\Debug\WebUI.csprojResolveAssemblyReference.cache
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\obj\Debug\ZGZY.WebUI.dll
+E:\项目\wwb调试\审核后台源码\ZGZY\html+js+ashx+easyui 权限管理系统 学习版\ZGZY\WebUI\obj\Debug\ZGZY.WebUI.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.WebUI.dll.config
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.WebUI.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.WebUI.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\FabViewModel.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\log4net.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\Newtonsoft.Json.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.BLL.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.Common.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.Model.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.SQLServerDAL.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.DALFactory.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.BLL.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.Common.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\FabViewModel.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.SQLServerDAL.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\bin\ZGZY.DALFactory.pdb
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\obj\Debug\WebUI.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\obj\Debug\ZGZY.WebUI.dll
+C:\Users\saucer\Desktop\XTRightManage_9a956a6d-3011-4089-9cc5-17e3c4d490b4\WebUI\obj\Debug\ZGZY.WebUI.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.WebUI.dll.config
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.WebUI.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.WebUI.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\FabViewModel.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\log4net.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\Newtonsoft.Json.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.BLL.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.Common.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.SQLServerDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.DALFactory.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.BLL.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.Common.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\FabViewModel.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.SQLServerDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\ZGZY.DALFactory.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\obj\Debug\WebUI.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\WebUI\obj\Debug\ZGZY.WebUI.dll
+C:\Users\saucer\Desktop\Fab20170904\WebUI\obj\Debug\ZGZY.WebUI.pdb
+C:\Users\saucer\Desktop\Fab20170904\WebUI\bin\LitJSON.dll

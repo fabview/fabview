@@ -1,0 +1,1037 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="/css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/color.css" rel="stylesheet" />
+
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/easyui-lang-zh_CN.js"></script>
+    <script src="/admin/js/common.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+</head>
+<body class="easyui-layout">
+    <div region="center" style="padding:5px;" border="false">
+        <table id="tt" fit="true"></table>
+
+        <div id="data-window" class="easyui-window" data-options="title:'创建订单',iconCls:'icon-edit',modal:true,maximizable:false,minimizable:false"
+             style="background:#fafafa;width:1000px;height:400px;padding:5px;">
+            <div class="easyui-layout" data-options="fit:true">
+                <div data-options="region:'center',border:false" style="padding:10px;background:#fff;border:0px solid #ccc;">
+                    <form id="orderForm" method="post">
+                        <div class="cont-box" data-options="region:'center',border:false" style="padding:10px;background:#fff;border:0px solid #ccc;">
+                            <div class="cont-box-in">
+                                <div class="cont-box-form">
+                                    <div class="line">
+                                        <div class="short">
+                                            <label>订单号：</label>
+                                            <input name="order_number" required="required" class='easyui-validatebox' />
+                                        </div>
+                                        <div class="short">
+                                            <label>订单类型：</label>
+                                            <input name="order_type" id="order_type" class="easyui-combobox" style="width:150px" data-options="required:true" />
+                                        </div>
+                                        <div class="short">
+                                            <label>合同号：</label>
+                                            <input name="CONTRACT" />
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <div class="short">
+                                            <label>医院：</label>
+                                            <input name="DISTRIBUTOR" />
+                                        </div>
+                                        <div class="short">
+                                            <label>医生：</label>
+                                            <input name="DT_CONTACT" />
+                                        </div>
+                                        <div class="short">
+                                            <label>业务员：</label>
+                                            <input name="SALES" />
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <div class="short">
+                                            <label>患者：</label>
+                                            <input name="END_CUSTOMER" />
+                                        </div>
+                                        <div class="short">
+                                            <label>性别：</label>
+                                            <input name="END_CUST_SEX" />
+                                        </div>
+                                        <div class="short">
+                                            <label>年龄：</label>
+                                            <input name="END_CUST_AGE" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <div class="short">
+                                            <label>下单日期：</label>
+                                            <input class="easyui-datebox" style="width:150px" name="ORDER_DATE" />
+                                        </div>
+                                        <div class="short">
+                                            <label>预计生产天数：</label>
+                                            <input name="PROCESS_DAYS" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />
+                                        </div>
+                                        <div class="short">
+                                            <label>预计交单日期：</label>
+                                            <input class="easyui-datebox" style="width:150px" name="ESTIMATE_PACK_DATE" />
+                                        </div>
+                                    </div>
+                                    <div class="line">
+                                        <div class="short">
+                                            <label>订单备注：</label>
+                                            <input name="NOTE" />
+                                        </div>
+                                        <!--<div class="short">
+                                            <label>产品大类：</label>
+                                            <input name="PROD_CATE" />
+                                        </div>
+                                        <div class="short">
+                                            <label>产品名称：</label>
+                                            <input name="PROD_NAME" />
+                                        </div>-->
+                                        <!--<div class="line">
+                                            <div class="short">
+                                                <label>工艺类型：</label>
+                                                <input name="PROCESS_TYPE" />
+                                            </div>
+                                            <div class="short">
+                                                <label>牙色：</label>
+                                                <input name="PROD_COLOR" />
+                                            </div>
+                                            <div class="short">
+                                                <label>牙位：</label>
+                                                <input name="PROD_POSITION" />
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="easyui-tabs" data-options="region:'east',split:true,border:true,collapsed:true" title="用户手册"
+                     style="width: 550px;">
+                    <div title="界面使用说明" style="padding:5px">
+                        <div id="page1" style="overFlow: scroll;height:100%"></div>
+                        <script>
+                            $("#page1").load("/admin/html_sop/Route_SOP_User.html");
+                        </script>
+                    </div>
+                    <div title="IT逻辑说明" style="padding:5px">
+                        <div id="page2" style="overFlow: scroll;height:100%"></div>
+                        <script>
+                            $("#page2").load("/admin/html_sop/Route_SOP_IT.html");
+                        </script>
+                    </div>
+                </div>
+
+                <div data-options="region:'north'" style="text-align:left;padding:5px 0;">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveData()" id="btn-save">保存</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="closeWindow()" id="btn-cancel">取消</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="divOrderSplit" class="easyui-tabs" data-options="title:'订单拆分（创建子订单）',region:'center',border:false"
+             style="width:810px;height:350px;padding:5px;background:#fff;border:0px solid #ccc;">
+            <div title="子订单列表" style="padding: 5px;">
+                <table id="tOrderSplit" style="width:700px;height:250px"></table>
+            </div>
+            <div id="divAddSubOrder" title="新增子订单" style="padding: 5px;">
+                <table cellspacing="10">
+                    <tr style="text-align:right">
+                        <td colspan="3">
+                            订单描述：<input id="sub_order_desc" class="easyui-textbox" required="required" style="width:655px;" />
+                        </td>
+                    </tr>
+                    <tr style="text-align:right">
+                        <td style="width:250px;">
+                            订单数量：<input id="sub_order_count" class="easyui-textbox" required="required"
+                                        onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />
+                        </td>
+                        <td style="width:250px;">产品大类：<input id="prod_cate" class="easyui-textbox" required="required" /></td>
+                        <td style="width:250px;">产品名称：<input id="prod_name" class="easyui-textbox" required="required" /></td>
+                    </tr>
+                    <tr style="text-align:right">
+                        <td>工艺类型：<input id="process_type" class="easyui-textbox" /></td>
+                        <td>牙色：<input id="product_color" class="easyui-textbox" /></td>
+                        <td>牙位：<input id="product_position" class="easyui-textbox" /></td>
+                    </tr>
+                    <tr style="text-align:right">
+                        <td colspan="3">
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="SaveSubOrder()"
+                               data-options="iconCls:'icon-ok'" id="btn-save">保存</a>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="ResetSplitWindow()"
+                               data-options="iconCls:'icon-cancel'" id="btn-ok">重置</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!--<div class="cont-box-in">
+                <div class="cont-box-form">
+                    <div class="line">
+                        <div class="short">
+                            <label>订单号：</label>
+                            <input id="txtorder_number" class="easyui-textbox" type="text" readonly="readonly" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-box-in">
+                <div class="cont-box-form">
+                    <div class="line">
+                        <div class="short">
+                            <label>子订单号：</label>
+                            <input id="txtsub_order" required="required" class='easyui-validatebox' />
+                        </div>
+                        <div class="short">
+                            <label>子订单描述：</label>
+                            <input id="txtsub_order_desc" name="sub_order_desc" />
+                        </div>
+                        <div class="short">
+                            <label>产品数量：</label>
+                            <input id="txtqty" value="1" />
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+
+            <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0;">
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveSubOrder()" id="btn-save">保存</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="closeOrderSplitWindow()" id="btn-cancel">取消</a>
+            </div>
+            <!--</form>-->
+        </div>
+
+        <div id="divOrderImport" data-options="title:'订单导入(xml文件)',border:false"
+             style="width:810px;height:350px;padding:5px;background:#fff;border:0px solid #ccc;">
+            <div id="progressBarZone">
+                <table>
+                    <tr>
+                        <td>XML文件路径</td>
+                        <td><input id="txtXmlPath" type="text" placeholder="请输入xml文件路径" style="width:600px" value="C:\OrderXML" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <textarea id="txtImportResult" rows="10" style="width:678px"></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <span>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="ImportOrder()"
+                       id="btn-import">导入</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'"
+                       onclick="closeOrderImportWindow()">关闭</a>
+                </span>
+            </div>
+        </div>
+
+        <div id="divAssignRoute" class="easyui-window" data-options="title:'分配工艺路线',region:'center',border:false" style="width:950px;height:400px;padding:10px;background:#fff;border:0px solid #ccc;">
+            <table id="tAssignRoute" fit="true"></table>
+        </div>
+
+        <div id="search" title="搜索" iconCls="icon-search" modal="true" maximizable="false" minimizable="false" style="background:#fafafa;width:380px;height:100px;">
+            <div style="padding:20px 20px 20px 20px;">
+                <input id="ss" />
+                <div id="mm" style="width:120px">
+                    <div data-options="name:'ORDER_NUMBER',iconCls:'icon-ok'">ORDER_NUMBER</div>
+                    <div data-options="name:'ORDER_TYPE'">ORDER_TYPE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    /*************初始化 开始**************/
+    $('#data-window').window({
+        closed: true
+    });
+    $('#divOrderSplit').window({
+        closed: true
+    });
+    $('#divOrderImport').window({
+        closed: true
+    });
+    $('#divAssignRoute').window({
+        closed: true
+    });
+    $('#search').window({
+        closed: true
+    });
+
+    function loadOrderType() {
+        $("#order_type").combobox({
+            url: "../ashx/zzCommon/ListCode.ashx?action=list&code_cate=order_type",//获取数据
+            method: "post",
+            valueField: 'CODE_VALUE',
+            textField: 'CODE_DESC'
+        })
+    }
+    /*************初始化 结束**************/
+
+    $(function () {
+        grid = $('#tt').datagrid({
+            pageSize: 15,
+            pageList: [15, 20, 30, 150, 300],
+            fit: true,//自动大小
+            rownumbers: true,//行号
+            url: '../../../FabView/Ashx/OrderManager/ProviderHandler.ashx',
+            loadMsg: '数据装载中......',
+            //singleSelect: true,//单行选取
+            pagination: true,//显示分页
+            frozenColumns: [[
+                      { field: 'ORDERID', title: 'ORDERID', width: 10, checkbox: true },
+                      { field: 'ORDER_NUMBER', title: '订单号', width: 150, sortable: true },
+                      { field: 'ORDER_TYPE', title: '订单类型', width: 100, sortable: true }
+            ]],
+            columns: [[
+                      { field: 'SUB_ORDER', title: '子订单号', width: 150 },
+                      { field: 'SUB_ORDER_DESC', title: '子订单描述', width: 150 },
+                      { field: 'STATUS', title: '订单状态', width: 100 },
+                      { field: 'SALES_ORDER', title: '销售订单号', width: 100 },
+                      { field: 'CONTRACT', title: '合同号', width: 100 },
+                      { field: 'DISTRIBUTOR', title: '医院', width: 100 },
+                      { field: 'DT_CONTACT', title: '医生', width: 100 },
+                      { field: 'END_CUSTOMER', title: '病人', width: 100 },
+                      { field: 'END_CUST_SEX', title: '性别', width: 100 },
+                      { field: 'END_CUST_AGE', title: '年龄', width: 100 },
+                      { field: 'PROCESS_DAYS', title: '加工周期', width: 100 },
+                      { field: 'ORDER_DATE', title: '下单日期', width: 150, sortable: true },
+                      { field: 'ESTIMATE_PACK_DATE', title: '预计交单日期', width: 150 },
+                      { field: 'ACT_PACK_DATE', title: '实际交单日期', width: 150 },
+                      { field: 'ACT_SHIP_DATE', title: '发货日期', width: 150 },
+                      { field: 'NOTE', title: '订单备注', width: 100 },
+                      { field: 'PROD_CATE', title: '产品类型', width: 100 },
+                      { field: 'PROD_NAME', title: '产品名称', width: 100 },
+                      { field: 'PROCESS_TYPE', title: '工艺类型', width: 100 },
+                      { field: 'PROD_COLOR', title: '牙色', width: 100 },
+                      { field: 'PROD_POSITION', title: '牙位', width: 100 }
+            ]],
+            toolbar: [{
+                text: '新增',
+                iconCls: 'icon-add',
+                handler: newData
+            }, '-', {
+                text: '修改',
+                iconCls: 'icon-edit',
+                handler: editData
+            }, '-', {
+                text: '删除',
+                iconCls: 'icon-remove',
+                handler: delData
+            }, '-', {
+                text: '查询',
+                iconCls: 'icon-search',
+                handler: newSearch
+            }, '-', {
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: reLoad
+            }, '-', {
+                text: '订单拆分',
+                iconCls: 'icon-edit',
+                handler: splitOrder
+            }, '-', {
+                text: '订单导入（XML文件）',
+                iconCls: 'icon-edit',
+                handler: orderImport
+            }, '-', {
+                text: '分配工艺路线',
+                iconCls: 'icon-edit',
+                handler: assignRoute
+            }]
+        });
+
+        //设置分页控件
+        var p = grid.datagrid('getPager');
+        $(p).pagination({
+            pageSize: 15,//每页显示的记录条数，默认为10
+            pageList: [5, 10, 15, 20, 30]//可以设置每页记录条数的列表
+        });
+
+        win = $('#data-window').window({
+            closed: true
+        });
+
+        formOrderSplit = $('#divOrderSplit').window({
+            closed: true
+        });
+
+        formOrderImport = $('#divOrderImport').window({
+            closed: true
+        });
+
+        formAssignRoute = $('#divAssignRoute').window({
+            closed: true
+        });
+
+        form = win.find('form');//form：主界面
+
+        $('#ss').searchbox({
+            width: 300,
+            searcher: function (value, name) {
+                //alert(value + "," + name);
+                grid.datagrid('load', { "searchKey": name, "searchValue": value });
+                //alert(value + "," + name);
+            },
+            menu: '#mm',
+            prompt: '请输入关键字'
+        });
+
+        search = $('#search').window({
+            closed: true
+        });
+    });
+
+    var grid;
+    var win; //订单新增界面
+    var form;//订单新增界面
+    var formOrderSplit;
+    var formOrderImport;//导入子订单
+    var search;
+    var orderNumber;
+    //显示搜索窗口
+    function newSearch() {
+        search.window('open');
+    }
+    //重新加载datagrid
+    function reLoad() {
+        grid.datagrid('load', { url: '/ashx/ProviderHandler.ashx' });
+    }
+    //显示新增数据窗口
+    function newData() {
+        win.window('open');
+        loadOrderType();
+        form.form('clear');
+        form.url = '/ashx/ProviderActionHandler.ashx?action=add';
+    }
+    //显示编辑数据窗口
+    function editData() {
+        var rows = grid.datagrid('getSelections');
+        if (rows.length != 1) {
+            $.messager.show({
+                title: '警告',
+                msg: '请选中一行数据修改。',
+            });
+
+            return;
+        }
+
+        win.window('open');
+        form.form('load', rows[0]);
+        form.url = '/ashx/ProviderActionHandler.ashx?action=edit';
+    }
+    //订单拆分：打开窗口
+    function splitOrder() {
+        var rows = grid.datagrid('getSelections');
+        if (rows.length != 1) {
+            $.messager.show({
+                title: '警告',
+                msg: '请选中一行数据修改。',
+            });
+            return;
+        }
+        formOrderSplit.window('open');
+        //$("#txtorder_number").val(rows[0].ORDER_NUMBER);
+        GetOrderSplitTable(rows[0].ORDER_NUMBER);
+
+        $('#txtOrderNumber').val(rows[0].ORDER_NUMBER);
+    }
+    //根据xml文件导入订单
+    function orderImport() {
+        $("#txtImportResult").val();
+        formOrderImport.window('open');
+    }
+
+    function ResetSplitWindow() {
+        $("#divAddSubOrder input").val("");
+    }
+
+    //订单拆分：提交
+    function SaveSubOrder() {
+        var validate = $("#divOrderSplit").form('validate');
+        var url = '/ashx/ProviderActionHandler.ashx?action=split';
+
+        var txtorder_number = $('#txtOrderNumber').val();
+        var txtsub_order = $('#txtsub_order').val();
+        var txtsub_order_desc = $('#sub_order_desc').val();
+        var txtqty = $('#sub_order_count').val();
+        var username = $.cookie('CurUserName');
+
+        var prod_cate = $('#prod_cate').val();
+        var prod_name = $('#prod_name').val();
+        var process_type = $('#process_type').val();
+        var product_color = $('#product_color').val();
+        var product_position = $('#product_position').val();
+
+        if (validate) {
+            $.post(url,
+                {
+                    order_number: txtorder_number,
+                    sub_order: txtsub_order,
+                    sub_order_desc: txtsub_order_desc,
+                    qty: txtqty,
+                    username: username,
+                    prod_cate: prod_cate,
+                    prod_name: prod_name,
+                    process_type: process_type,
+                    product_color: product_color,
+                    product_position: product_position
+                },
+                function (result) {
+                    if (result.status == 1) {
+                        grid.datagrid('reload');
+                        $.messager.show({
+                            title: '提示',
+                            msg: '子订单创建成功。'
+                        });
+                    } else {
+                        $.messager.alert('错误', result.msg, 'error');
+                    }
+                }, 'json');
+        }
+    }
+
+    //分配工艺路线:打开窗口
+    function assignRoute() {
+        var row = grid.datagrid('getSelected');
+        if (!row) {
+            $.show_warning("提示", "请选中需要分配工艺路线的订单。");
+            return;
+        }
+
+        var sub_order = row.SUB_ORDER;
+        formAssignRoute.window('open');
+
+        $('#tAssignRoute').datagrid({
+            fit: true,//自动大小
+            url: '/ashx/RouteHandler.ashx',
+            queryParams: {
+                'action': 'select',
+                'sub_order': sub_order
+            },
+            columns: [[
+                { field: 'ID', title: 'ID', checkbox: true },
+                { field: 'PROCESS_NAME', title: '工序名称', width: 100, sortable: true },
+                { field: 'PROCESS_ID', title: '工序编号', width: 100 },
+                { field: 'PROCESS_DESC', title: '工序描述', width: 200 },
+                { field: 'TOOL_NAME', title: '设备名称', width: 150 },
+                { field: 'TOOL_GROUP', title: '设备组', width: 150 },
+                { field: 'TOOL_DESC', title: '设备描述', width: 200 },
+                { field: 'ASSIGNED', title: '工序是否已经选择', width: 200, hidden: true }
+            ]],
+            toolbar: [{
+                text: '保存',
+                iconCls: 'icon-save',
+                handler: SaveRoute
+            }],
+            onLoadSuccess: function (data) { //对之前已经选择的工序，加载时实现反填
+                var rowData = data.rows;
+                $.each(rowData, function (idx, val) {
+                    if (val.ASSIGNED) {
+                        $("#tAssignRoute").datagrid("selectRow", idx);
+                    }
+                });
+            }
+        });
+    }
+
+    //订单导入
+    function ImportOrder() {
+        var url = '../../ashx/OrderImportHandler.ashx?action=import';
+
+        $.post(url,
+            {
+                path: $("#txtXmlPath").val(),
+                username: $.cookie('CurUserName')
+            },
+            function (result) {
+                if (result.status == 1) {
+                    grid.datagrid('reload');
+                    $.messager.show({
+                        title: '提示',
+                        msg: '订单导入成功。'
+                    });
+                    $("#txtImportResult").val(result.msg);
+                } else {
+                    $.messager.alert('错误', result.msg, 'error');
+                }
+            }, 'json');
+    }
+
+    function SaveRoute() {
+        var rows = grid.datagrid('getSelections');
+        var ids = [];
+        var subOrders = [];
+
+        if (rows.length > 0) {
+            var rows_process = $('#tAssignRoute').datagrid('getSelections');
+            if (rows_process.length == 0) {
+                $.show_warning("提示", "请选择工序。");
+                return;
+            }
+
+            for (var i = 0; i < rows_process.length; i++) { //选中的工序
+                ids.push(rows_process[i].ID);
+            }
+
+            for (var i = 0; i < rows.length; i++) { //选中的订单（订单待分配工艺、生成工艺路线）
+                subOrders.push("'" + rows[i].SUB_ORDER + "'");
+            }
+
+            $.messager.confirm('Confirm', '您确定提交吗?', function (r) {
+                if (r) {
+                    $.post('/ashx/RouteHandler.ashx?action=create', { id: ids.join(','), sub_order: subOrders.join(',') },
+                        function (result) {
+                            if (result.status == 1) {
+                                grid.datagrid('reload');
+                                $.show_warning('', '分配成功。');
+                            } else {
+                                var obj = jQuery.parseJSON(result.item);
+                                $.show_error("", result.msg, obj.wo_number[0].wo_number);
+                                return;
+                            }
+                        },
+                      'json');
+
+                    formAssignRoute.window('close');
+                }
+            });
+        }
+    }
+
+    //保存新增或者修改的数据
+    function saveData() {
+        //var username = AR.Utility.Cookie.get('username');
+        if (form.form('validate')) {
+            var query = createParam();
+            $.post(form.url, query,
+                function (result) {
+                    if (result.status == 1) {
+                        grid.datagrid('reload');
+                        win.window('close');
+                        $.messager.show({
+                            title: '提示',
+                            msg: '数据记录保存成功。'
+                        });
+                    } else {
+                        $.messager.alert('错误', result.msg, 'error');
+                    }
+                }, 'json');
+        }
+    }
+    //删除记录，参数是记录的主关键字
+    function delData() {
+        var rows = grid.datagrid('getSelections');
+        var ids = [];
+        if (rows.length == 0) {
+            $.messager.show({
+                title: '警告',
+                msg: '请选择需要删除的数据。',
+            });
+            return;
+        }
+
+        $.messager.confirm('Confirm', '您确定要删除' + rows.length + '行数据吗？', function (r) {
+            if (r) {
+                for (var i = 0; i < rows.length; i++) {
+                    ids.push("'" + rows[i].ORDERID + "'");
+                }
+                $.post('/ashx/ProviderActionHandler.ashx?action=del', { id: ids.join(',') },
+                    function (result) {
+                        if (result.status == 1) {
+                            grid.datagrid('reload');
+                        } else {
+                            $.messager.alert('错误', result.msg, 'error');
+                        }
+                    },
+                  'json');
+            }
+        });
+
+        //if (row) {
+        //    $.messager.confirm('Confirm', '您确定要删除该数据吗?', function (r) {
+        //        if (r) {
+        //            $.post('/ashx/ProviderActionHandler.ashx?action=del', { id: row.ORDERID },
+        //                function (result) {
+        //                    if (result.status == 1) {
+        //                        grid.datagrid('reload');
+        //                    } else {
+        //                        $.messager.alert('错误', result.msg, 'error');
+        //                    }
+        //                },
+        //              'json');
+        //        }
+        //    });
+        //} else {
+        //    $.messager.show({
+        //        title: '警告',
+        //        msg: '请先选择数据记录。'
+        //    });
+        //}
+    }
+    function closeWindow() {
+        win.window('close');
+    }
+
+    function closeOrderSplitWindow() {
+        $('#divOrderSplit').window({
+            closed: true
+        });
+    }
+
+    function closeOrderImportWindow() {
+        $('#divOrderImport').window({
+            closed: true
+        });
+    }
+
+    //将表单序列化为json
+    function createParam() {
+        var query = form.serializeArray();
+        query = convertArray(query);
+        return "json=" + JSON.stringify(query);
+    }
+
+    function convertArray(o) {
+        var v = {};
+        for (var i in o) {
+            if (o[i].name != '__VIEWSTATE') {
+                if (typeof (v[o[i].name]) == 'undefined')
+                    v[o[i].name] = o[i].value;
+                else
+                    v[o[i].name] += "," + o[i].value;
+            }
+        }
+        return v;
+    }
+
+    function MoveUp() {
+        var row = $("#tOrderSplit").datagrid('getSelected');
+        var index = $("#tOrderSplit").datagrid('getRowIndex', row);
+        mysort(index, 'up', 'tOrderSplit');
+    }
+    //下移
+    function MoveDown() {
+        var row = $("#tOrderSplit").datagrid('getSelected');
+        var index = $("#tOrderSplit").datagrid('getRowIndex', row);
+        mysort(index, 'down', 'tOrderSplit');
+    }
+
+    function mysort(index, type, gridname) {
+        if ("up" == type) {
+            if (index != 0) {
+                var toup = $('#' + gridname).datagrid('getData').rows[index];
+                var todown = $('#' + gridname).datagrid('getData').rows[index - 1];
+                $('#' + gridname).datagrid('getData').rows[index] = todown;
+                $('#' + gridname).datagrid('getData').rows[index - 1] = toup;
+                $('#' + gridname).datagrid('refreshRow', index);
+                $('#' + gridname).datagrid('refreshRow', index - 1);
+                $('#' + gridname).datagrid('selectRow', index - 1);
+            }
+        } else if ("down" == type) {
+            var rows = $('#' + gridname).datagrid('getRows').length;
+            if (index != rows - 1) {
+                var todown = $('#' + gridname).datagrid('getData').rows[index];
+                var toup = $('#' + gridname).datagrid('getData').rows[index + 1];
+                $('#' + gridname).datagrid('getData').rows[index + 1] = todown;
+                $('#' + gridname).datagrid('getData').rows[index] = toup;
+                $('#' + gridname).datagrid('refreshRow', index);
+                $('#' + gridname).datagrid('refreshRow', index + 1);
+                $('#' + gridname).datagrid('selectRow', index + 1);
+            }
+        }
+    }
+
+    function GetOrderSplitTable(orderNumber) {
+        var editRow = undefined;
+        var datagrid;
+
+        datagrid = $("#tOrderSplit").datagrid({ loadFilter: pagerFilter }).datagrid({
+            //methord: 'post',
+            url: '/ashx/ProviderActionHandler.ashx?action=list_sub_order&order_number=' + orderNumber,
+            iconCls: 'icon-save', //图标
+            pagination: true, //显示分页
+            pageSize: 5, //页大小
+            pageList: [5, 20, 100], //页大小下拉选项此项各value是pageSize的倍数
+            singleSelect: true,//单行选取
+            //fit: true, //datagrid自适应宽度
+            rownumbers: true,//行号
+            fitColumn: false, //列自适应宽度
+            //striped: true, //行背景交换
+            nowap: true, //列内容多时自动折至第二行
+            border: false,
+            idField: 'ID', //主键
+            columns: [[//显示的列
+                { field: 'ORDERID', title: '编号', width: 100, sortable: true, hidden: true },
+                { field: 'sub_order', title: '子订单', width: 200 },
+                { field: 'qty', title: '数量', width: 100, align: 'left' },
+                { field: 'sub_order_desc', title: '子订单描述', width: 200, align: 'left' },
+                { field: 'prod_cate', title: '产品大类', width: 100, align: 'left' },
+                { field: 'prod_name', title: '产品名称', width: 100, align: 'left' },
+                { field: 'process_type', title: '工艺类型', width: 100, align: 'left' },
+                { field: 'prod_color', title: '牙色', width: 100, align: 'left' },
+                { field: 'prod_position', title: '牙位', width: 100, align: 'left' }
+            ]],
+            toolbar: [{
+                text: '添加', iconCls: 'icon-add', handler: function () {//添加列表的操作按钮添加，修改，删除等
+                    //添加时先判断是否有开启编辑的行，如果有则把开户编辑的那行结束编辑
+                    if (editRow != undefined) {
+                        datagrid.datagrid("endEdit", editRow);
+                    }
+                    //添加时如果没有正在编辑的行，则在datagrid的第一行插入一行
+                    if (editRow == undefined) {
+                        datagrid.datagrid("insertRow", {
+                            index: 0, // index start with 0
+                            row: {
+                            }
+                        });
+                        //将新插入的那一行开启编辑状态
+                        datagrid.datagrid("beginEdit", 0);
+                        //给当前编辑的行赋值
+                        editRow = 0;
+                    }
+                }
+            }, '-',
+             {
+                 text: '删除', iconCls: 'icon-remove', handler: function () {
+                     //删除时先获取选择行
+                     var row = datagrid.datagrid("getSelected");
+                     //选择要删除的行
+                     if (row) {
+                         $.messager.confirm("提示", "你确定要删除吗?", function (r) {
+                             if (r) {
+                                 $.post('/ashx/ProviderActionHandler.ashx?action=del_sub_order', { sub_order: row.sub_order },
+                                     function (result) {
+                                         if (result.status == 1) {
+                                             $('#tOrderSplit').datagrid('reload');
+                                         } else {
+                                             $.messager.alert('错误', result.msg, 'error');
+                                         }
+                                     },
+                                   'json');
+                             }
+                         });
+                     }
+                     else {
+                         $.messager.alert("提示", "请选择要删除的行", "error");
+                     }
+                 }
+             }, '-',
+             {
+                 text: '修改', iconCls: 'icon-edit', handler: function () {
+                     //修改时要获取选择到的行
+                     var rows = datagrid.datagrid("getSelections");
+                     //如果只选择了一行则可以进行修改，否则不操作
+                     if (rows.length == 1) {
+                         //修改之前先关闭已经开启的编辑行，当调用endEdit该方法时会触发onAfterEdit事件
+                         if (editRow != undefined) {
+                             datagrid.datagrid("endEdit", editRow);
+                         }
+                         //当无编辑行时
+                         if (editRow == undefined) {
+                             //获取到当前选择行的下标
+                             var index = datagrid.datagrid("getRowIndex", rows[0]);
+                             //开启编辑
+                             datagrid.datagrid("beginEdit", index);
+                             //把当前开启编辑的行赋值给全局变量editRow
+                             editRow = index;
+                             //当开启了当前选择行的编辑状态之后，
+                             //应该取消当前列表的所有选择行，要不然双击之后无法再选择其他行进行编辑
+                             datagrid.datagrid("unselectAll");
+                         }
+                     }
+                 }
+             }, '-',
+             {
+                 text: '保存', iconCls: 'icon-save', handler: function () {
+                     //保存时结束当前编辑的行，自动触发onAfterEdit事件如果要与后台交互可将数据通过Ajax提交后台
+                     datagrid.datagrid("endEdit", editRow);
+                 }
+             }, '-',
+             {
+                 text: '取消编辑', iconCls: 'icon-redo', handler: function () {
+                     //取消当前编辑行把当前编辑行罢undefined回滚改变的数据,取消选择的行
+                     editRow = undefined;
+                     datagrid.datagrid("rejectChanges");
+                     datagrid.datagrid("unselectAll");
+                 }
+             }, '-'
+             , {
+                 text: '订单号：<input type="text" id="txtOrderNumber" style="width:150px" />'
+             }],
+
+            onAfterEdit: function (rowIndex, rowData, changes) {
+                //endEdit该方法触发此事件
+                console.info(rowData);
+                editRow = undefined;
+                //alert(AR.Utility.Cookie.get('username'));
+                var createdBy = 'admin';
+                $.post('/ashx/ProviderActionHandler.ashx?action=split',
+                    { order_number: $('#txtOrderNumber').val(), sub_order: rowData.sub_order, sub_order_desc: rowData.sub_order_desc, CREATED_BY: createdBy, qty: rowData.qty },
+                        function (result) {
+                            if (result.status == 1) {
+                                $.messager.show({
+                                    title: '提示',
+                                    msg: '添加成功。'
+                                });
+
+                                grid.datagrid('reload');
+                            } else {
+                                $.messager.show({
+                                    title: '警告',
+                                    msg: '添加异常。'
+                                });
+                            }
+                        },
+                      'json');
+            },
+            onDblClickRow: function (rowIndex, rowData) {
+                //双击开启编辑行
+                if (editRow != undefined) {
+                    datagrid.datagrid("endEdit", editRow);
+                }
+                if (editRow == undefined) {
+                    datagrid.datagrid("beginEdit", rowIndex);
+                    editRow = rowIndex;
+                }
+            }
+        });
+    }
+
+    // 分页数据的操作
+    function pagerFilter(data) {
+        if (typeof data.length == 'number' && typeof data.splice == 'function') {   // is array
+            data = {
+                total: data.length,
+                rows: data
+            }
+        }
+        var dg = $(this);
+        var opts = dg.datagrid('options');
+        var pager = dg.datagrid('getPager');
+        pager.pagination({
+            onSelectPage: function (pageNum, pageSize) {
+                opts.pageNumber = pageNum;
+                opts.pageSize = pageSize;
+                pager.pagination('refresh', {
+                    pageNumber: pageNum,
+                    pageSize: pageSize
+                });
+                dg.datagrid('loadData', data);
+            }
+        });
+        if (!data.originalRows) {
+            data.originalRows = (data.rows);
+        }
+        var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+        var end = start + parseInt(opts.pageSize);
+        data.rows = (data.originalRows.slice(start, end));
+        return data;
+    }
+    function selectFile() {
+        //触发 文件选择的click事件
+        $("#file").trigger("click");
+        //其他code如 alert($("#file").attr("value"))
+    } function getFilePath() {
+        alert($("#file").attr("value"));
+    }
+
+</script>
+
+<!--<script>
+    var progressBarZone = document.getElementById('progressBarZone');
+
+    function sendFile(files) {
+        if (!files || files.length < 1) {
+            return;
+        }
+
+        var percent = document.createElement('div');
+        percent.innerHTML = null; //xujiyuan
+        progressBarZone.appendChild(percent);
+
+        var formData = new FormData();      // 创建一个表单对象FormData
+        //formData.append('submit', '中文');  // 往表单对象添加文本字段
+
+        var fileNames = '';
+        var xmlFile;
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];    // file 对象有 name, size 属性
+
+            var index1 = file.name.lastIndexOf(".");
+            var index2 = file.name.length;
+            var file_type = file.name.substring(index1 + 1, index2);
+
+            if (file_type.toUpperCase() != 'XML') {
+                $.messager.alert('错误', "请选择xml文件。当前文件包含：" + file_type, 'error');
+                return;
+            }
+        }
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];    // file 对象有 name, size 属性
+            xmlFile = files[i].toString();
+
+            formData.append('file[' + i + ']', file);       // 往FormData对象添加File对象
+
+            fileNames += '《' + file.name + '》， ';
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener('progress',
+               function uploadProgress(evt) {
+                   // evt 有三个属性：
+                   // lengthComputable – 可计算的已上传字节数
+                   // total – 总的字节数
+                   // loaded – 到目前为止上传的字节数
+                   if (evt.lengthComputable) {
+                       percent.innerHTML = fileNames + ' upload percent :' + Math.round((evt.loaded / evt.total) * 100) + '%';
+                   }
+               }, false); // false表示在事件冒泡阶段处理
+
+        xhr.upload.onload = function () {
+            percent.innerHTML = fileNames + '上传完成。';
+        };
+
+        xhr.upload.onerror = function (e) {
+            percent.innerHTML = fileNames + ' 上传失败。';
+        };
+
+        xhr.open('post', '../../ashx/OrderImportHandler.ashx?action=import&xml='+xmlFile, true);
+        xhr.send(formData); // 处理拖放的文件。
+    }
+
+    document.addEventListener("dragenter", function (e) {
+        // 判断当前的目标是否进入了潜在的 dropzone区域，如果是则高量这个潜在的目标区域
+        //if (event.target.className == "progressBarZone") {
+        //            console.log("进入潜在的目标区域");
+        //e.target.style.background = "gray";
+
+        //}
+
+    }, false);
+
+    document.addEventListener("dragover", function (e) {
+        e.stopPropagation();
+        e.preventDefault(); // 必须调用。否则浏览器会进行默认处理，比如文本类型的文件直接打开，非文本的可能弹出一个下载文件框。
+    }, false);
+
+    document.addEventListener("drop", function (e) {
+        e.stopPropagation();
+        e.preventDefault(); // 必须调用。否则浏览器会进行默认处理，比如文本类型的文件直接打开，非文本的可能弹出一个下载文件框。
+
+        sendFile(e.dataTransfer.files);
+    }, false);
+</script>-->

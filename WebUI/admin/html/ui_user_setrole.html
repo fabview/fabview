@@ -1,0 +1,32 @@
+﻿<div style="padding: 15px; overflow: hidden">
+    <form id="ui_user_setroleform" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                用户：
+            </th>
+            <td>
+                <input type="hidden" id="ui_user_setrole_userid" name="ui_user_setrole_userid" />
+                <input type="text" id="ui_user_setrole_username" name="ui_user_setrole_username"
+                    disabled="disabled" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                用户角色：
+            </th>
+            <td>
+                <input class="easyui-combobox" id="ui_user_setrole_role" name="ui_user_setrole_role"
+                    data-options="
+                    url:'ashx/bg_role.ashx?action=getall',
+                    editable:false,
+                    valueField:'Id',  
+                    textField:'RoleName',  
+                    multiple:true" />
+                <img style="cursor: pointer; vertical-align: middle;" onclick="$('#ui_user_setrole_role').combobox('clear');"
+                    alt="清空角色" title="清空角色" src="themes/icon/edit-clear.png" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

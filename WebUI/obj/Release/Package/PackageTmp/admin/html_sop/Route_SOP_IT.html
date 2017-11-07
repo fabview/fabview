@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="/css/table_h.css" rel="stylesheet" />
+</head>
+<body>
+    <table class="gridtable" summary="Manual for IT">
+        <thead>
+            <tr>
+                <th>操作</th>
+                <th>对象</th>
+                <th>逻辑</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="colum1" rowspan="10">分配工艺路线</td>
+                <td id="colum2">服务</td>
+                <td id="colum3">
+                    RouteHandler.ashx/create
+                </td>
+            </tr>
+            <tr>
+                <td id="colum2">HPrdRoute（订单工艺路线表）</td>
+                <td id="colum3">删除：删除已选择订单的数据</td>
+            </tr>
+            <tr>
+                <td id="colum2">HPrdRoute（订单工艺路线表）</td>
+                <td id="colum3">写入：将选择的工序、按照顺序写入</td>
+            </tr>
+            <tr>
+                <td id="colum2">HOrder（订单表）</td>
+                <td id="colum3">更新：将订单表的next_process更新为订单的首工序（HPrdRoute的sequence等于1）</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

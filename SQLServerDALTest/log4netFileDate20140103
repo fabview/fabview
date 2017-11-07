@@ -1,0 +1,9 @@
+记录时间：[2014-01-03 14:51:39,289]日志级别：[INFO]出错类：[ZGZY.SQLServerDALTest.LoginLogTest]错误描述：[获取的个数是：0]
+记录时间：[2014-01-03 14:54:16,675]\t日志级别：[INFO]\t出错类：[ZGZY.SQLServerDALTest.LoginLogTest]\t错误描述：[获取的个数是：1]
+记录时间：[2014-01-03 15:05:19,499] 日志级别：[INFO] 出错类：[ZGZY.SQLServerDALTest.LoginLogTest] 错误描述：[获取的个数是：2]
+记录时间：[2014-01-03 15:07:19,191] 日志级别：[INFO] 出错类：[ZGZY.SQLServerDALTest.LoginLogTest] 错误描述：[获取的个数是：3]
+记录时间：[2014-01-03 15:31:07,131] 日志级别：[FATAL] 出错类：[ZGZY.DALFactory.Factory] 错误描述：[没有从配置文件中获取命名空间名称！]
+记录时间：[2014-01-03 15:31:07,193] 日志级别：[FATAL] 出错类：[ZGZY.DALFactory.Factory] 错误描述：[没有从配置文件中获取命名空间名称！]
+记录时间：[2014-01-03 15:31:07,202] 日志级别：[FATAL] 出错类：[ZGZY.DALFactory.Factory] 错误描述：[没有从配置文件中获取命名空间名称！]
+记录时间：2014-01-03 15:32:43,501 日志级别：INFO 出错类：ZGZY.SQLServerDALTest.LoginLogTest 错误描述：获取的个数是：4
+记录时间：2014-01-03 15:47:54,507 日志级别：INFO 出错类：ZGZY.SQLServerDALTest.LoginLogTest 错误描述：获取的个数是：1

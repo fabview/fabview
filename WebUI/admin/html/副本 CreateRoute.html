@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="../css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="../css/main.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="../js/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+</head>
+<body class="easyui-layout">
+    <div region="center" style="padding:5px;" border="false">
+        <table id="tt" fit="true"></table>abc
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var grid;
+    $(function () {
+        grid = $('#tt').datagrid({
+            pageSize: 15,
+            pageList: [10, 15, 20, 30],
+            fit: true,//自动大小
+            rownumbers: true,//行号
+            url: '../../RouteHandler.ashx?action=select',
+            //loadMsg:'数据装载中......',
+            //singleSelect: true,//单行选取
+
+            pagination: true,//显示分页
+            frozenColumns: [[
+                      { field: 'ID', title: 'ID', checkbox: true },
+                      { field: 'CODE_VALUE', title: '工序名称', width: 100, sortable: true }
+            ]],
+            columns: [[
+                      { field: 'CODE1', title: '工序编号', width: 100 },
+                      { field: 'CODE_DESC', title: '工序描述', width: 100 }
+            ]],
+            toolbar: [{
+                text: '保存',
+                iconCls: 'icon-save',
+                handler: SaveRoute
+            }, '-', {
+                text: '刷新',
+                iconCls: 'icon-reload',
+                handler: ReLoad
+            }]
+        });
+    });
+
+    function ReLoad() {
+        grid.datagrid('load', { url: '../../RouteHandler.ashx?action=select' });
+    }
+    //保存工艺路线
+    function SaveRoute() {
+        var rows = grid.datagrid('getSelections');
+        var wo = '123';
+        var ids = [];
+        for (var i = 0; i < rows.length; i++) {
+            ids.push(rows[i].ID);
+        }
+
+        if (rows) {
+            $.messager.confirm('Confirm', '您确定提交吗?', function (r) {
+                if (r) {
+                    $.post('../../../../FabView/Ashx/ProductionPlanMgmt/Route/RouteHandler.ashx?action=create', { id: ids.join(','), wo_number: wo },
+                        function (result) {
+                            if (result.status == 1) {
+                                grid.datagrid('reload');
+                            } else {
+                                $.messager.alert('错误', result.msg, 'error');
+                            }
+                        },
+                      'json');
+                }
+            });
+        } else {
+            $.messager.show({
+                title: '警告',
+                msg: '请先选择数据记录。'
+            });
+        }
+    }
+</script>

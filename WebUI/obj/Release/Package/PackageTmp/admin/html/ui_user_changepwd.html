@@ -1,0 +1,33 @@
+﻿<div style="padding: 15px; overflow: hidden">
+    <form id="ui_user_userchangepwd_form" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                原密码：
+            </th>
+            <td>
+                <input type="password" name="ui_user_userchangepwd_originalpwd" id="ui_user_userchangepwd_originalpwd"
+                    class="easyui-validatebox" data-options="required:true" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                新密码：
+            </th>
+            <td>
+                <input type="password" name="ui_user_userchangepwd_newpwd" id="ui_user_userchangepwd_newpwd"
+                    class="easyui-validatebox" data-options="required:true" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                确认密码：
+            </th>
+            <td>
+                <input type="password" name="ui_user_userchangepwd_confirmpwd" id="ui_user_userchangepwd_confirmpwd"
+                    class="easyui-validatebox" data-options="required:true, validType:'eqPwd[\'#ui_user_userchangepwd_form input[name=ui_user_userchangepwd_newpwd]\']'" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

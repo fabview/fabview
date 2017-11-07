@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>订单导入</title>
+    <meta charset="utf-8" />
+    <link href="/css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/color.css" rel="stylesheet" />
+
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery-1.7.1.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/locale/easyui-lang-zh_CN.js"></script>
+    <script src="/admin/js/common.js"></script>
+</head>
+<body>
+    <div id="progressBarZone">please drag file here</div>
+</body>
+</html>
+
+<script>
+    var progressBarZone = document.getElementById('progressBarZone');
+
+    function sendFile(files) {
+        if (!files || files.length < 1) {
+            return;
+        }
+
+        var percent = document.createElement('div');
+        progressBarZone.appendChild(percent);
+
+        var formData = new FormData();      // 创建一个表单对象FormData
+        formData.append('submit', '中文');  // 往表单对象添加文本字段
+
+        var fileNames = '';
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];    // file 对象有 name, size 属性
+
+            var index1 = file.lastIndexOf(".");
+            var index2 = file.length;
+            var file_type = file.substring(index1, index2);
+            if (file_type.toUpperCase() != 'XML') {
+                $.messager.alert('错误', "请选择xml文件。当前文件包含：" + file_type, 'error');
+                return;
+            }
+        }
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];    // file 对象有 name, size 属性
+
+            formData.append('file[' + i + ']', file);       // 往FormData对象添加File对象
+
+            fileNames += '《' + file.name + '》， ';
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener('progress',
+               function uploadProgress(evt) {
+                   // evt 有三个属性：
+                   // lengthComputable – 可计算的已上传字节数
+                   // total – 总的字节数
+                   // loaded – 到目前为止上传的字节数
+                   if (evt.lengthComputable) {
+                       percent.innerHTML = fileNames + ' upload percent :' + Math.round((evt.loaded / evt.total) * 100) + '%';
+                   }
+               }, false); // false表示在事件冒泡阶段处理
+
+        xhr.upload.onload = function () {
+            percent.innerHTML = fileNames + '上传完成。';
+        };
+
+        xhr.upload.onerror = function (e) {
+            percent.innerHTML = fileNames + ' 上传失败。';
+        };
+
+        xhr.open('post', 'http://cross.site.com:8080/html5/FileUploadServlet', true);
+        xhr.send(formData); // 处理拖放的文件。
+    }
+
+    document.addEventListener("dragenter", function (e) {
+        // 判断当前的目标是否进入了潜在的 dropzone区域，如果是则高量这个潜在的目标区域
+        //if (event.target.className == "progressBarZone") {
+            //            console.log("进入潜在的目标区域");
+        e.target.style.background = "purple";
+        
+        //}
+
+    }, false);
+
+    document.addEventListener("dragover", function (e) {
+        e.stopPropagation();
+        e.preventDefault(); // 必须调用。否则浏览器会进行默认处理，比如文本类型的文件直接打开，非文本的可能弹出一个下载文件框。
+    }, false);
+
+    document.addEventListener("drop", function (e) {
+        e.stopPropagation();
+        e.preventDefault(); // 必须调用。否则浏览器会进行默认处理，比如文本类型的文件直接打开，非文本的可能弹出一个下载文件框。
+                
+        sendFile(e.dataTransfer.files);
+    }, false);
+</script>

@@ -1,0 +1,24 @@
+﻿<script type="text/javascript">
+    //回车不提交表单，防止报405错误
+    $("#ui_user_userfirstlogin_form").find('input').on('keydown', function (e) {
+        var e = e || event;
+        var keyNum = e.which || e.keyCode;
+        return keyNum == 13 ? false : true;
+    })
+</script>
+<div style="padding: 15px; overflow: hidden">
+    <form id="ui_user_userfirstlogin_form" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                新密码：
+            </th>
+            <td>
+                <input type="hidden" name="ui_user_firstlogin_id" id="ui_user_firstlogin_id" />
+                <input type="password" name="ui_user_firstlogin_pwd" id="ui_user_firstlogin_pwd"
+                    class="easyui-validatebox" data-options="required:true" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

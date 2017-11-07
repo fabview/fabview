@@ -1,0 +1,7 @@
+C:\Users\saucer\Desktop\Fab20170904\IDAL\bin\Release\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\IDAL\bin\Release\ZGZY.IDAL.pdb
+C:\Users\saucer\Desktop\Fab20170904\IDAL\bin\Release\ZGZY.Model.dll
+C:\Users\saucer\Desktop\Fab20170904\IDAL\bin\Release\ZGZY.Model.pdb
+C:\Users\saucer\Desktop\Fab20170904\IDAL\obj\Release\IDAL.csprojResolveAssemblyReference.cache
+C:\Users\saucer\Desktop\Fab20170904\IDAL\obj\Release\ZGZY.IDAL.dll
+C:\Users\saucer\Desktop\Fab20170904\IDAL\obj\Release\ZGZY.IDAL.pdb

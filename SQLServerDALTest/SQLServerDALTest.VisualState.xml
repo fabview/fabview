@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="true">
+  <TopNode>[0-1000]F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDALTest\SQLServerDALTest.nunit</TopNode>
+  <SelectedNode>[0-1003]ZGZY.SQLServerDALTest.LoginLogTest.GetTotalCountGreatThanZeroTest</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDALTest\SQLServerDALTest.nunit" Expanded="true" />
+    <Node UniqueName="[0-1007]F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDALTest\bin\Debug\ZGZY.SQLServerDALTest.dll" Expanded="true" />
+    <Node UniqueName="[0-1008]ZGZY" Expanded="true" />
+    <Node UniqueName="[0-1009]ZGZY.SQLServerDALTest" Expanded="true" />
+    <Node UniqueName="[0-1001]ZGZY.SQLServerDALTest.LoginLogTest" Expanded="true" Checked="true" />
+  </Nodes>
+</VisualState>

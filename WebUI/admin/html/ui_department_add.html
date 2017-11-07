@@ -1,0 +1,37 @@
+﻿<div style="padding: 15px; overflow: hidden">
+    <form id="ui_department_addform" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                名称：
+            </th>
+            <td>
+                <input type="text" name="ui_department_departmentname_add" id="ui_department_departmentname_add"
+                    class="easyui-validatebox" data-options="required:true" autocomplete="off" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                排序：
+            </th>
+            <td>
+                <input name="ui_department_sort_add" class="easyui-numberspinner" style="width: 70px;"
+                    value="10" data-options="min:1,max:100,editable:false">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                父节点：
+            </th>
+            <td>
+                <input class="easyui-combotree" id="ui_department_parentid_add" name="ui_department_parentid_add"
+                    data-options="
+                    url: 'ashx/bg_department.ashx?action=getall',
+                    lines:true" />
+                <img style="cursor: pointer; vertical-align: middle;" onclick="$('#ui_department_parentid_add').combotree('clear');"
+                    alt="清空父节点" title="清空父节点" src="themes/icon/edit-clear.png" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

@@ -1,0 +1,24 @@
+﻿*
+{
+    font-size: 13px; /*font-family: Tahoma,Verdana,微软雅黑,新宋体;*/
+}
+body
+{
+    background: #D2E0F2;
+}
+.tableForm
+{
+    border-collapse: collapse;
+}
+.tableForm th
+{
+    text-align: right;
+    border-bottom: 1px dotted #ccc;
+    padding: 5px;
+}
+.tableForm td
+{
+    text-align: left;
+    border-bottom: 1px dotted #ccc;
+    padding: 5px;
+}

@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="/css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" />
+    <link href="/css/jquery-easyui-1.4.4/themes/color.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+    <div class="easyui-layout" data-options="fit:true">
+        <div data-options="region:'west', minWidth:200, width:300, title:'请输入子订单号'">
+            <div>
+                <textarea rows="50" style="resize:none;width:280px;height:450px;font-size:12px;margin:5px;
+                                font-family: Microsoft YaHei;" id="txtSubOrder" placeholder="请输入订单号。每行一个订单，最大支持50个。"></textarea>
+            </div>
+            <div>
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="Search()"
+                   data-options="iconCls:'icon-search'" id="btn-search">查询</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="ProcessAdjust()"
+                   data-options="iconCls:'icon-ok'" id="btn-ok">调整工序</a>
+            </div>
+        </div>
+        <div data-options="region:'center', title:'请填写工序调整信息'">
+            <form id="formAdjustionInfo" style="height:99%;">
+                <div id="divAdjustionInfo" style="width:850px; height:40%; border:1px solid #E0EEE0; ">
+                    <table cellspacing="10">
+                        <tr style="text-align:right">
+                            <td style="width:250px;">调整类型：<input id="branch_type" name="branch_type" class="easyui-combobox" type="text" required="required" /></td>
+                            <td style="width:250px;">接收人：<input name="receiver" class="easyui-combobox" required="required" /></td>
+                            <td style="width:250px;">调整责任人：<input name="rwk_user" class="easyui-combobox" required="required" /></td>
+                        </tr>
+                        <tr style="text-align:right">
+                            <td>责任工序：<input id="issue_process" name="issue_process" class="easyui-combobox" required="required" /></td>
+                            <td>接受工序：<input id="to_process" name="to_process" class="easyui-combobox" required="required" /></td><!--目标工序-->
+                            <td>原因大类：<input id="reason_cate" name="reason_cate" class="easyui-combobox" required="required" /></td>
+                        </tr>
+                        <tr style="text-align:right">
+                            <td>原因小类：<input id="reason_sub_cate" class="easyui-combobox" required="required" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <div styrole="height:59%; border:1px solid #E0EEE0">
+                    <textarea rows="50" style="resize:none;width:838px;height:250px;font-size:12px;margin:5px;
+                                font-family: Microsoft YaHei;" name="rwk_note" placeholder="请输入工序调整的原因和注意事项"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="easyui-tabs" data-options="region:'east',split:true,border:true,collapsed:true" title="用户手册"
+             style="width: 550px;">
+            <div title="界面使用说明" style="padding:5px">
+                <div id="page1" style="overFlow: scroll;height:100%"></div>
+                <script>
+                    $("#page1").load("/admin/html_sop/ProcessOperation_SOP_User.html");
+                </script>
+            </div>
+            <div title="IT逻辑说明" style="padding:5px">
+                <div id="page2" style="overFlow: scroll;height:100%"></div>
+                <script>
+                    $("#page2").load("/admin/html_sop/ProcessOperation_SOP_IT.html");
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!--<div data-options="region:'south', height:50">
+        <p style="text-align:center; line-height:20px;"></p>
+    </div>-->
+</body>
+</html>
+
+<script type="text/javascript">
+    var ProcessList;
+    /*************初始化 开始**************/
+    $(function () {
+        //目标工序
+        $("#to_process").combobox({
+            url: "/ashx/ListProcess.ashx?action=list",
+            method: "post",
+            valueField: 'PROCESS_ID',
+            textField: 'PROCESS_NAME'
+        });
+        //责任工序（问题工序）
+        $("#issue_process").combobox({
+            url: "/ashx/ListProcess.ashx?action=list",
+            method: "post",
+            valueField: 'PROCESS_ID',
+            textField: 'PROCESS_NAME'
+        });
+        //返工方式
+        $("#branch_type").combobox({
+            url: "../../ashx/zzCommon/ListCode.ashx?action=list&code_cate=REWORK_TYPE",
+            method: "post",
+            valueField: 'CODE_VALUE',
+            textField: 'CODE_DESC'
+        });
+        //原因大类
+        $("#reason_cate").combobox({
+            url: "../../ashx/zzCommon/ListCode.ashx?action=list&code_cate=REWORK_REASON",
+            method: "post",
+            valueField: 'CODE_VALUE',
+            textField: 'CODE_DESC'
+        });
+        //原因小类
+        //$("#reason_cate").combobox({
+        //    url: "../../ashx/zzCommon/ListCode.ashx?action=list&code_cate=REWORK_SUB_REASON",
+        //    method: "post",
+        //    valueField: 'CODE_VALUE',
+        //    textField: 'CODE_DESC'
+        //});
+    });
+    /*************初始化 介绍**************/
+
+    //工序调整按钮
+    function ProcessAdjust() {
+        //$("#divAdjustionInfo").find("input[type='text']").each(function () {
+        //    if ($(this).val() == "") {
+        //        $.show_warning("", "工序调整信息不能为空。");
+        //        return false;
+        //    };
+        //});
+
+        var query = $('#formAdjustionInfo').serializeArray();
+        query = "json=" + JSON.stringify(convertArray(query));
+
+        //参数为：action、user_name、sub_orders（订单号）、query
+        $.post("/ashx/ProcessHandler.ashx?action=process_adjust&user_name=" + $.cookie('CurUserName') + "&sub_orders=" + $('#txtSubOrder').val(),
+            query, function (result) {
+                if (result.status == 1) {
+                    $.show_success('', '工序调整成功。');
+                } else {
+                    $.messager.alert('错误', result.msg, 'error');
+                    return false;
+                }
+            }, 'json');
+
+        //$.ajax({
+        //    type: "get",
+        //    async: false,
+        //    url: "/ashx/ProcessHandler.ashx",
+        //    data: {
+        //        "action": "process_adjust",
+        //        "sub_orders": $('#txtSubOrder').val(),
+        //        "user_name": $.cookie('CurUserName'),
+        //        "branch_type":$('#branch_type').val(),
+        //        "receiver":$('#receiver').val(),
+        //        "rwk_user":$('#rwk_user').val(),
+        //        "issue_process":$('#issue_process').val(),
+        //        "to_process":$('#to_process').val(),
+        //        "reason_cate":$('#reason_cate').val(),
+        //        "reason_sub_cate": $('#reason_sub_cate').val(),
+        //        "rwk_note": $('#rwk_note').val(),
+        //        "json":query
+        //    },
+        //    success: function (data) {
+        //        if (data.status == 1) {
+        //            $.messager.show({
+        //                title: '提示',
+        //                msg: '工序调整成功。'
+        //            });
+        //        }
+        //    }
+        //});
+    }
+
+    function convertArray(o) {
+        var v = {};
+        for (var i in o) {
+            if (o[i].name != '__VIEWSTATE') {
+                if (typeof (v[o[i].name]) == 'undefined')
+                    v[o[i].name] = o[i].value;
+                else
+                    v[o[i].name] += "," + o[i].value;
+            }
+        }
+        return v;
+    }
+</script>

@@ -1,0 +1,31 @@
+﻿<div style="padding: 15px; overflow: hidden">
+    <form id="ui_user_setdepform" method="post" action="">
+    <table class="tableForm" width="100%">
+        <tr>
+            <th>
+                用户：
+            </th>
+            <td>
+                <input type="hidden" id="ui_user_setdep_userid" name="ui_user_setdep_userid" />
+                <input type="text" id="ui_user_setdep_username" name="ui_user_setdep_username" style="width: 170px;"
+                    disabled="disabled" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                用户部门：
+            </th>
+            <td>
+                <input class="easyui-combotree" id="ui_user_setdep_dep" name="ui_user_setdep_dep"
+                    style="width: 180px;" data-options="
+                    url: 'ashx/bg_department.ashx?action=getall',
+                    onlyLeafCheck:true,
+                    multiple:true,
+                    lines:true" />
+                <img style="cursor: pointer; vertical-align: middle;" onclick="$('#ui_user_setdep_dep').combotree('clear');"
+                    alt="清空部门" title="清空部门" src="themes/icon/edit-clear.png" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>FabView - 生产管理系统</title>
+    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+    <link href="css/table.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-easyui-1.4.4/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css" />
+    <!--<link href="css/jquery-easyui-1.4.4/themes/icon.css" rel="stylesheet" type="text/css" />-->
+    <link href="themes/icon.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="js/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="js/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script src="js/common.js" type="text/javascript"></script>
+    <script src="js/init.js" type="text/javascript"></script>
+</head>
+<body class="easyui-layout">
+    <noscript>
+        <div style="position: absolute; z-index: 100000; height: 2046px; top: 0px; left: 0px;
+            width: 100%; background: white; text-align: center;">
+            <h1>
+                必须打开浏览器javascript支持！！！
+            </h1>
+        </div>
+    </noscript>
+    <div data-options="region:'north',border:false" class="panel-top" style="height: 60px;  padding: 15px; font-size: large;">
+        <div style="position: absolute; right: 5px; top: 10px; color:white" id="div_welcome">
+        </div>
+        <div style="position: absolute; right: 0px; bottom: 0px;color:white">
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-boss'" style="color:white"
+               onclick="searchMyInfo();">我的信息</a><a href="javascript:void(0);" class="easyui-linkbutton" style="color:white"
+                                                    data-options="plain:true,iconCls:'icon-set1'" onclick="changePwd();">修改密码</a><a href="javascript:void(0);" style="color:white"
+                                                                                                                                    class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-stop'" onclick="loginOut();">退出系统</a>
+        </div>
+    </div>
+    <div data-options="region:'west',split:true,title:'功能导航'" style="width: 180px; padding: 10px;">
+        <div>
+            <ul id="treeLeft"></ul>
+        </div>
+    </div>
+    <div data-options="region:'center'">
+        <div id="tabs" class="easyui-tabs" fit="true" border="false" data-options="
+             tools:[=tools:[
+             {iconCls={iconCls = ='icon-arrow_refresh' ,text:'刷新',handler:refreshTab},=,text:'刷新',handler:refreshTab},
+             {iconCls={iconCls = ='icon-delete3' ,text:'关闭全部',handler:closeTab}=,text:'关闭全部',handler:closeTab}
+             ]"=]">
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    //初始化当前根节点下所有子菜单
+    function initMenu(jsonSource, Dom, tempIndex) {
+        var innnerhtml = "";
+        for (var i = 0; i < jsonSource.length; i++) {
+            if (jsonSource[i].attributes.isshow == 1) {
+                var menuID = jsonSource[i].id;
+                var menuName = jsonSource[i].text;
+                var menuUrl = jsonSource[i].attributes.menuurl;
+                var template = mTemplate[tempIndex];
+                innnerhtml = innnerhtml + AR.Utility.stringFormat(template, menuID, menuName, menuUrl);
+            }
+        }
+        //alert(innnerhtml.toString()); //xujiyuans
+        Dom.html(innnerhtml);
+        //先注册完事件，再触发
+        setTimeout(function () {
+            Dom.children().eq(0).addClass("hover").click();
+        }, 100);
+    }
+</script>

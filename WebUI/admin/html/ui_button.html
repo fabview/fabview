@@ -1,0 +1,73 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $.ajax({     //请求当前用户可以操作的按钮
+            url: "ashx/bg_button.ashx?menucode=button&pagename=ui_button",
+            type: "post",
+            data: { "action": "getbutton" },
+            dataType: "json",
+            timeout: 5000,
+            success: function (data) {
+                if (data.success) {
+                    var toolbar = getToolBar(data);      //common.js
+                    if (data.browser) {     //判断是否有浏览权限
+                        $("#ui_button_dg").datagrid({       //初始化datagrid
+                            url: "ashx/bg_button.ashx?action=search",
+                            striped: true, rownumbers: true, pagination: true, pageSize: 20, singleSelect: true,
+                            idField: 'Id',
+                            sortName: 'Sort',
+                            sortOrder: 'asc',
+                            pageList: [20, 40, 60, 80, 100],
+                            frozenColumns: [[
+                                             { field: 'Name', title: '按钮名称', sortable: true, width: 100 }
+                                           ]],
+                            columns: [[
+                                       { field: 'Code', title: '标识码', sortable: true, width: 120 },
+                                       { field: 'Icon', title: '图标', sortable: true, width: 150 },
+                                       { field: 'Sort', title: '排序', sortable: true, width: 80 },
+                                       { field: 'AddDate', title: '添加时间', sortable: true, width: 130 },
+                                       { field: 'Description', title: '描述', sortable: true, width: 250,
+                                           formatter: function (value, row, index) {
+                                               return value.length > 20 ? '<span title="' + value + '">' + value + '</span>' : value;
+                                           }
+                                       }
+                                       ]],
+                            toolbar: toolbar.length == 0 ? null : toolbar,   //请求回来的当前用户可以操作的按钮
+                            onDblClickRow: function (rowIndex, rowData) {     //双击行弹框编辑
+                                ui_button_edit();
+                            }
+                        });
+                    }
+                    else {
+                        $.show_warning("提示", "无权限，请联系管理员！");
+                    }
+                } else {
+                    $.show_warning("错误", data.result);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                if (textStatus == "timeout") {
+                    $.show_warning("提示", "请求超时，请刷新当前页重试！");
+                }
+                else {
+                    $.show_warning("错误", textStatus + "：" + errorThrown);
+                }
+            }
+        })
+    });
+
+    function ui_button_add() {
+        $.show_warning("提示", "按钮添加");
+    }
+    function ui_button_edit() {
+        $.show_warning("提示", "按钮编辑");
+    }
+    function ui_button_delete() {
+        $.show_warning("提示", "按钮删除");
+    }
+</script>
+<div id="ui_button_layout" class="easyui-layout" data-options="fit:true,border:false">
+    <div data-options="region:'center',border:false">
+        <table id="ui_button_dg" data-options="fit:true,border:false">
+        </table>
+    </div>
+</div>

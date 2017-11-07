@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDALTest\SQLServerDALTest.nunit" total="5" errors="0" failures="2" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-01-08" time="17:10:40">
+  <environment nunit-version="2.6.2.12296" clr-version="2.0.50727.5420" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY" machine-name="JIE_W_PC" user="Administrator" user-domain="jie_w_PC" />
+  <culture-info current-culture="zh-CN" current-uiculture="zh-CN" />
+  <test-suite type="Project" name="F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDALTest\SQLServerDALTest.nunit" executed="True" result="Failure" success="False" time="0.808" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="F:\Downloads\工作积累\html+js+ashx+easyui 权限管理系统 博客版\ZGZY\SQLServerDALTest\bin\Debug\ZGZY.SQLServerDALTest.dll" executed="True" result="Failure" success="False" time="0.800" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="ZGZY" executed="True" result="Failure" success="False" time="0.799" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="SQLServerDALTest" executed="True" result="Failure" success="False" time="0.799" asserts="0">
+                <results>
+                  <test-suite type="TestFixture" name="LoginLogTest" executed="True" result="Failure" success="False" time="0.797" asserts="0">
+                    <results>
+                      <test-case name="ZGZY.SQLServerDALTest.LoginLogTest.CheckLoginTest" executed="True" result="Success" success="True" time="0.471" asserts="1" />
+                      <test-case name="ZGZY.SQLServerDALTest.LoginLogTest.GetPagerTest" executed="True" result="Failure" success="False" time="0.124" asserts="1">
+                        <failure>
+                          <message><![CDATA[  Expected string length 495 but was 22. Strings differ at index 10.
+  Expected: "{"total": 4,"rows":[{"Row":1,"Id":462,"UserName":"admin","Use..."
+  But was:  "{"total": 0,"rows":[]}"
+  ---------------------^
+]]></message>
+                          <stack-trace><![CDATA[在 ZGZY.SQLServerDALTest.LoginLogTest.GetPagerTest() 位置 E:\代码\ZGZY\SQLServerDALTest\LoginLogTest.cs:行号 69
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                      <test-case name="ZGZY.SQLServerDALTest.LoginLogTest.GetTotalCountGreatThanZeroTest" executed="True" result="Success" success="True" time="0.004" asserts="1" />
+                      <test-case name="ZGZY.SQLServerDALTest.LoginLogTest.GetTotalCountIsZeroTest" executed="True" result="Failure" success="False" time="0.122" asserts="1">
+                        <failure>
+                          <message><![CDATA[  Expected: 4
+  But was:  0
+]]></message>
+                          <stack-trace><![CDATA[在 ZGZY.SQLServerDALTest.LoginLogTest.GetTotalCountIsZeroTest() 位置 E:\代码\ZGZY\SQLServerDALTest\LoginLogTest.cs:行号 51
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                      <test-case name="ZGZY.SQLServerDALTest.LoginLogTest.WriteLoginLogTest" executed="True" result="Success" success="True" time="0.011" asserts="1" />
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
